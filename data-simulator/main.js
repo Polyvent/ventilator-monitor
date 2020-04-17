@@ -3,10 +3,11 @@ var ventNum =  '0';
 
 if (process.argv.length > 2) {
     ventNum = process.argv[2];
-    process.env.NODE_ENV = ventNum;
-    fs.copyFileSync('./config/default.json', './config/'+ ventNum + '.json');
-    console.log('./config/'+ ventNum + '.json was created');
 }
+
+process.env.NODE_ENV = ventNum;
+fs.copyFileSync('./config/default.json', './config/'+ ventNum + '.json');
+console.log('./config/'+ ventNum + '.json was created');
 
 var config = require('config');
 var settings = config.get('settings');
