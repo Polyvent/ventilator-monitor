@@ -17,7 +17,7 @@ var db = new sqlite3.Database('ventDB');
 db.serialize(function() {
     db.run("CREATE TABLE if not exists ventilators (deviceID int, firstName varchar(100), lastName varchar(100))")
     db.run(
-        `CREATE TABLE if not exists dataset 
+        `CREATE TABLE if not exists dataset
            (deviceID int,
             expiredCO2 int,
             expiredO2 int,
@@ -96,13 +96,13 @@ nextApp.prepare()
                         dataPoint.raw.temperature1,
                         dataPoint.raw.temperature2,
                         dataPoint.time)
-            
+
                     stmt.finalize()
                 })
             )
 
             // TODO: check for anomalies and add to object
-            
+
             // notify clients about new data
             console.log(`New data: ${data.value}`)
             clients.emit('data', data)
@@ -120,7 +120,7 @@ nextApp.prepare()
 
     // socket.io data event for emitters (incoming data)
     emitters.on('data', (data) => {
-        
+
     })
 
     // Start HTTP server
