@@ -59,7 +59,12 @@ body {
     padding-right: 25px;
 }
 .ventilator-status:hover, .ventilator-status:active {
+    cursor: pointer;
+    user-select: none;
     background-color: #222831;
+}
+.active-vent {
+    background-color: #525863;
 }
 
 .ventilator-list ul {

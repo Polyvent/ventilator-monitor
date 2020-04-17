@@ -51,12 +51,21 @@ class App extends React.Component {
             }
         }]
 
+
+        this.state = {activeVentilator: this.ventilators[0].id}
+        this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
+    }
+
+    updateActiveVentilator(ventId) {
+        console.log(ventId);
+        this.setState({activeVentilator: ventId})
+        // this.activeVentilator = ventId
     }
 
     render() {
         return (
             <div>
-                <VentilatorList ventilators = {this.ventilators} />
+                <VentilatorList ventilators = {this.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
                 <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} />
             </div>
         );
