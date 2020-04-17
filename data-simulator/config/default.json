@@ -1,0 +1,27 @@
+{
+    "settings": {
+        "serverURL": "http://localhost:8080",
+        "dataAPI": "http://api.theopenvent.com/exampledata/v2/data",
+        "pushInterval": 2000
+    },
+    "vital": {
+        "startValues": {
+            "bloodpressure": {
+                "systole": 120,
+                "diastole": 80
+            },
+            "bodyTemperature": 36.6,
+            "heartRate": 70,
+            "oxygenSaturation": 94
+        },
+        "deviation": {
+            "bloodpressure": {
+                "systole": 12,
+                "diastole": 8
+            },
+            "bodyTemperature": 0.5,
+            "heartRate": 10,
+            "oxygenSaturation": 5
+        }
+    }
+}

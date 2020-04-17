@@ -1,12 +1,13 @@
 const io = require("socket.io")
 
-const server = io.listen(8000)
+const server = io.listen(8080)
 
 server.on('connection', (socket) => {
     console.info(`Client connected [id=${socket.id}]`);
 
     socket.on('msg', (msg) => {
         console.log(msg)
+        console.log()
     })
 
     socket.on("disconnect", () => {
