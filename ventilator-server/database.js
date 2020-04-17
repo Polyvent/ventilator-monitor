@@ -48,44 +48,42 @@ exports.initialize = (callback) => {
 
 // Inserts datapoints into the database
 exports.insert = (data) => {
-    data.forEach(dataPoint =>
-        db.serialize(function () {
-            var stmt = db.prepare("INSERT INTO dataset VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
-            stmt.run(
-                dataPoint.ventdata.device_id,
-                dataPoint.ventdata.processed.ExpiredCO2,
-                dataPoint.ventdata.processed.ExpiredO2,
-                dataPoint.ventdata.processed.MVe,
-                dataPoint.ventdata.processed.frequency,
-                dataPoint.ventdata.processed.triggerSettings.FiO2,
-                dataPoint.ventdata.processed.triggerSettings.IE,
-                dataPoint.ventdata.processed.triggerSettings.MVe,
-                dataPoint.ventdata.processed.triggerSettings.PEEP,
-                dataPoint.ventdata.processed.triggerSettings.RR,
-                dataPoint.ventdata.processed.triggerSettings.VT,
-                dataPoint.ventdata.processed.triggerSettings.humidity,
-                dataPoint.ventdata.processed.triggerSettings.pressure_max,
-                dataPoint.ventdata.processed.triggerSettings.pressure_mean,
-                dataPoint.ventdata.processed.ventilationMode,
-                dataPoint.ventdata.processed.volumePerMinute,
-                dataPoint.ventdata.processed.volumePerMovement,
-                dataPoint.ventdata.raw.CO2,
-                dataPoint.ventdata.raw.O2,
-                dataPoint.ventdata.raw.angleSensor,
-                dataPoint.ventdata.raw.current,
-                dataPoint.ventdata.raw.motorRPM,
-                dataPoint.ventdata.raw.pressure1,
-                dataPoint.ventdata.raw.pressure2,
-                dataPoint.ventdata.raw.temperature1,
-                dataPoint.ventdata.raw.temperature2,
-                dataPoint.vitalsigns.bloodpressure.systole,
-                dataPoint.vitalsigns.bloodpressure.diastole,
-                dataPoint.vitalsigns.bodyTemperature,
-                dataPoint.vitalsigns.heartRate,
-                dataPoint.vitalsigns.oxygenSaturation,
-                dataPoint.ventdata.time)
+    db.serialize(function () {
+        var stmt = db.prepare("INSERT INTO dataset VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
+        stmt.run(
+            data.ventdata.device_id,
+            data.ventdata.processed.ExpiredCO2,
+            data.ventdata.processed.ExpiredO2,
+            data.ventdata.processed.MVe,
+            data.ventdata.processed.frequency,
+            data.ventdata.processed.triggerSettings.FiO2,
+            data.ventdata.processed.triggerSettings.IE,
+            data.ventdata.processed.triggerSettings.MVe,
+            data.ventdata.processed.triggerSettings.PEEP,
+            data.ventdata.processed.triggerSettings.RR,
+            data.ventdata.processed.triggerSettings.VT,
+            data.ventdata.processed.triggerSettings.humidity,
+            data.ventdata.processed.triggerSettings.pressure_max,
+            data.ventdata.processed.triggerSettings.pressure_mean,
+            data.ventdata.processed.ventilationMode,
+            data.ventdata.processed.volumePerMinute,
+            data.ventdata.processed.volumePerMovement,
+            data.ventdata.raw.CO2,
+            data.ventdata.raw.O2,
+            data.ventdata.raw.angleSensor,
+            data.ventdata.raw.current,
+            data.ventdata.raw.motorRPM,
+            data.ventdata.raw.pressure1,
+            data.ventdata.raw.pressure2,
+            data.ventdata.raw.temperature1,
+            data.ventdata.raw.temperature2,
+            data.vitalsigns.bloodpressure.systole,
+            data.vitalsigns.bloodpressure.diastole,
+            data.vitalsigns.bodyTemperature,
+            data.vitalsigns.heartRate,
+            data.vitalsigns.oxygenSaturation,
+            data.ventdata.time)
 
-            stmt.finalize()
-        })
-    )
+        stmt.finalize()
+    })
 }

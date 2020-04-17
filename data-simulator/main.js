@@ -39,6 +39,8 @@ ioClient.on('connect', (socket) => {
 
 ioClient.on('disconnect', (socket) => {
     clearInterval(emitIntervalHandle)
+    console.log("Disconnected.")
+    process.exit()
 });
 
 function dataEmit() {
@@ -60,7 +62,7 @@ function dataEmit() {
     .then(response => response.json())
     .then(ventdata => {
         data.ventdata = ventdata[ventNum]
-        ioClient.emit('data', [data]);
+        ioClient.emit('data', data);
     })
     .catch(err => console.error(err))    
 }
