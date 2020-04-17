@@ -1,0 +1,55 @@
+body {
+    background-color: #eeeeee;
+    color: black;
+    font-family: "Helvetica";
+    margin: 0;
+}
+.ventilator-list {
+    height: 80px;
+    background-color: #393e46;
+    color: white;
+}
+
+.profile-img {
+    width: 50px;
+    height: 50px;
+}
+.svg-okay {
+    fill: #4cd363;
+}
+.svg-alarm {
+    fill: #ff5722;
+}
+.text-okay {
+    color: #4cd363;
+}
+.text-alarm {
+    color: #ff5722;
+}
+
+.ventilator-status {
+    width: 190px;
+    height: 80px;
+    padding-right: 25px;
+}
+.ventilator-status:hover, .ventilator-status:active {
+    background-color: #222831;
+}
+
+.ventilator-list ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.ventilator-list li {
+    display: inline-block;
+}
+.ventilator-status svg {
+    margin: 10px;
+    margin-top: 15px;
+    float: left;
+}
+.ventilator-status .info {
+    float: right;
+    text-align: right;
+}
