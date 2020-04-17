@@ -79,3 +79,20 @@ body {
     float: right;
     text-align: right;
 }
+
+
+
+.side-info {
+    background-color: #393e46;
+    color: white;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    height: calc(100vh - 80px);
+    width: 200px;
+}
+.side-info ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}

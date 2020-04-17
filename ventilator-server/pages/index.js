@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import Header           from '../components/Header';
-import VentilatorList   from '../components/VentilatorList';
-import VentilatorView   from '../components/VentilatorView';
+import Header           from '../components/Header'
+import VentilatorList   from '../components/VentilatorList'
+import VentilatorView   from '../components/VentilatorView'
 
-import io from 'socket.io-client';
-const socket = io('/realtime');
+import io from 'socket.io-client'
+const socket = io('/realtime')
 
 
 export default function Index() {
@@ -17,7 +17,7 @@ export default function Index() {
 
 class App extends React.Component {
     constructor(props) {
-        super(props);
+        super(props)
 
         //Temporary
         this.ventilators = [{
@@ -37,7 +37,8 @@ class App extends React.Component {
             data: {
                 VT: 18,
                 PEEP: 9.2,
-                FiO2: 15
+                FiO2: 15,
+                IVe: 123
             }
         }, {
             ventId: 1,
@@ -45,7 +46,8 @@ class App extends React.Component {
             data: {
                 VT: 15,
                 PEEP: 12.3,
-                FiO2: 17
+                FiO2: 17,
+                IVe: 456
             }
         }]
 
