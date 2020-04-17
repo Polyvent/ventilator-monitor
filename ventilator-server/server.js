@@ -11,7 +11,7 @@ const handle    = nextApp.getRequestHandler()
 
 const db        = require('./database.js')
 
-const PORT = 8080
+const PORT      = 8080
 
 nextApp.prepare()
 .then(() => {
@@ -45,6 +45,11 @@ nextApp.prepare()
 
         socket.on('disconnect', () => {
             console.log(`Client with id ${socket.id} disconnected`)
+        })
+
+        // Send ventilators list to client
+        socket.emit('ventilators', () => {
+            
         })
     })
 
