@@ -1,3 +1,13 @@
+const fs = require('fs');
+var ventNum =  '0';
+
+if (process.argv.length > 2) {
+    ventNum = process.argv[2];
+    process.env.NODE_ENV = ventNum;
+    fs.copyFileSync('./config/default.json', './config/'+ ventNum + '.json');
+    console.log('./config/'+ ventNum + '.json was created');
+}
+
 var config = require('config');
 var settings = config.get('settings');
 var vital = config.get('vital');
@@ -23,6 +33,7 @@ var currentOxygenSaturation = vital.steadyValues.oxygenSaturation;
 adjustIntervalHandel = setInterval(function(){ vitalSignAdjustment(); }, settings.vitalSignAdjustSpeed);
 
 ioClient.on('connect', (socket) => {
+    console.info("Start fetching data...");
     emitIntervalHandle = setInterval(function(){ dataEmit(); }, settings.pushInterval);
 });
 
@@ -48,11 +59,10 @@ function dataEmit() {
     fetch(settings.dataAPI)
     .then(response => response.json())
     .then(ventdata => {
-        data.ventdata = ventdata['0']
+        data.ventdata = ventdata[ventNum]
         ioClient.emit('data', [data]);
     })
     .catch(err => console.error(err))    
-    console.info("Fetch Counter: " + ++fetchCounter);
 }
 
 function vitalSignAdjustment() {
@@ -130,3 +140,12 @@ function configReload () {
         currentVitalSignAdjustSpeed = settings.vitalSignAdjustSpeed;
     }
 }
+
+process.on('SIGINT', function() {
+    console.log("  Caught interrupt signal");
+    fs.unlink('./config/'+ ventNum + '.json', (err) => {
+        if (err) throw err;
+        console.log('./config/'+ ventNum + '.json was deleted');
+        process.exit();
+      });
+});
