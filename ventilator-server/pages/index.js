@@ -22,10 +22,31 @@ class App extends React.Component {
         //Temporary
         this.ventilators = [{
             name: "Ventilator 1",
+            id: 0,
             status: "okay"
         }, {
             name: "Ventilator 2",
+            id: 1,
             status: "alarm"
+        }]
+
+        //Temporary, should be updated by socket.io regularly
+        this.ventilatorData = [{
+            ventId: 0,
+            timestamp: new Date(),
+            data: {
+                VT: 18,
+                PEEP: 9.2,
+                FiO2: 15
+            }
+        }, {
+            ventId: 1,
+            timestamp: new Date(),
+            data: {
+                VT: 15,
+                PEEP: 12.3,
+                FiO2: 17
+            }
         }]
 
     }
@@ -34,7 +55,7 @@ class App extends React.Component {
         return (
             <div>
                 <VentilatorList ventilators = {this.ventilators} />
-                <VentilatorView />
+                <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} />
             </div>
         );
     }

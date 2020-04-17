@@ -1,5 +1,9 @@
 import React from 'react';
 
+import GraphView from './GraphView';
+import VentilatorInfo from './VentilatorInfo';
+
+
 export default class VentilatorList extends React.Component {
     constructor(props) {
         super(props);
@@ -7,7 +11,20 @@ export default class VentilatorList extends React.Component {
 
     render() {
         return(
-            <div>VentillatorView</div>
+            <div>
+                <div>
+                    <GraphView />
+                </div>
+
+                <div>
+                    <ul>
+                        {Object.entries(this.props.ventilatorData[0].data).map(([key, value]) => (
+                            <li key={key}> <VentilatorInfo name={key} value={value}/> </li>
+                        ))}
+                    </ul>
+                </div>
+
+            </div>
         );
     }
 

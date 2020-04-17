@@ -10,7 +10,7 @@ export default class VentilatorList extends React.Component {
 
     render() {
         return(
-            <div class="ventilator-list">
+            <div className="ventilator-list">
                 <ul>
                     {this.props.ventilators.map((ventilator) => (
                         <li key={ventilator.id}>
