@@ -1,0 +1,14 @@
+{
+  "name": "data-simulator",
+  "version": "0.0.1",
+  "description": "Sends simulated data as json",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "simulator"
+  ],
+  "author": "christoph wen",
+  "license": "ISC"
+}
