@@ -27,7 +27,8 @@ export default class LineGraph extends Component {
                             }
                         },
                         ticks:{
-                            maxTicksLimit: 5
+                            maxTicksLimit: 5,
+                            maxRotation: 0
                         }
                     }],
                     yAxes: [{

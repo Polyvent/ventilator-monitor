@@ -16,7 +16,7 @@ export default class VentillatorStatus extends React.Component {
                 </svg>
                 <div className="info">
                     <p>{name}</p>
-                    <p>Status: <span className={"text-"+status}>{status.toUpperCase()}</span></p>
+                    <p className="status-data">Status: <span className={"text-"+status}>{status.toUpperCase()}</span></p>
                 </div>
             </div>
         );

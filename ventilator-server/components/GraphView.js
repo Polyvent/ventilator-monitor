@@ -8,7 +8,10 @@ export default class GraphView extends React.Component {
 
     render() {
         return(
-            <LineGraph socket={this.props.socket}/>
+            <div className="graphContainer">
+                <LineGraph socket={this.props.socket}/>
+                <LineGraph socket={this.props.socket}/>
+            </div>
         );
     }
 
