@@ -13,7 +13,7 @@ export default class VentilatorList extends React.Component {
         return(
             <div>
                 <div>
-                    <GraphView />
+                    <GraphView socket = {this.props.socket} />
                 </div>
 
                 <div>

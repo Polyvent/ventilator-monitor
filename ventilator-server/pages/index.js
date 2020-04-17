@@ -55,7 +55,7 @@ class App extends React.Component {
         return (
             <div>
                 <VentilatorList ventilators = {this.ventilators} />
-                <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} />
+                <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} socket = {socket} />
             </div>
         );
     }
