@@ -123,7 +123,6 @@ exports.getDataPoints = (deviceID, fromTime, toTime) => {
 
 // Inserts datapoints into the database
 exports.insert = (data) => {
-    data.forEach(dataPoint =>
         db.serialize(function () {
             var stmt = db.prepare("INSERT INTO dataset VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)")
             stmt.run(
@@ -161,7 +160,6 @@ exports.insert = (data) => {
                 dataPoint.vitalsigns.oxygenSaturation,
                 dataPoint.ventdata.time)
 
-            stmt.finalize()
-        })
-    )
+        stmt.finalize()
+    })
 }
