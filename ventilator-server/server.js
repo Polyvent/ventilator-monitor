@@ -89,11 +89,6 @@ nextApp.prepare()
         })
     })
 
-    // socket.io data event for emitters (incoming data)
-    emitters.on('data', (data) => {
-        
-    })
-
     db.serialize(function() {
         console.log('Setting up database...')
         db.run("CREATE TABLE if not exists ventilators (deviceID int, firstName varchar(100), lastName varchar(100))")
