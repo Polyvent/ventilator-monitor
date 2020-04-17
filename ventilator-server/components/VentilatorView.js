@@ -17,12 +17,12 @@ export default class VentilatorList extends React.Component {
                     <GraphView />
                 </div>
 
-                <div class="side-info">
+                <div className="side-info">
                     <ul>
                         {Object.entries(this.props.ventilatorData[0].data)
                             .filter(([key, value]) => this.showSide.includes(key))
                             .map(([key, value]) => (
-                                <li key={key}> <VentilatorInfo name={key} value={value}/> </li>
+                                <li className="ventilator-info-li" key={key}> <VentilatorInfo name={key} value={value}/> </li>
                         ))}
                     </ul>
                 </div>
