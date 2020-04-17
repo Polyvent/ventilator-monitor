@@ -1,26 +1,56 @@
-const express   = require('express')
-const app       = express()
+const app       = require('express')()
+const http      = require('http').Server(app)
+const io        = require('socket.io')(http)
+const emitters  = io.of('/emit')
+const clients   = io.of('/realtime')
 const next      = require('next')
 
 const dev       = process.env.NODE_ENV !== 'production'
 const nextApp   = next({ dev })
-const http      = require('http').createServer(app)
-const io        = require('socket.io')(http)
 const handle    = nextApp.getRequestHandler()
 
 const PORT = 8080
 
 nextApp.prepare()
 .then(() => {
-
+    // Default route for react/nextjs
     app.get('*', (req, res) => {
         return handle(req, res)
     })
 
-    io.on('connection', (socket) => {
-      console.log("[IO] It works !");
-    });
+    // socket.io connect/disconnect events for emitters
+    emitters.on('connection', (socket) => {
+        console.log(`New emitter with id ${socket.id}`)
 
+        socket.on('disconnect', () => {
+            console.log(`Emitter with id ${socket.id} disconnected`)
+        })
+
+        socket.on('data', (data) => {
+            // TODO: store data in database
+            // TODO: check for anomalies and add to object
+            
+            // notify clients about new data
+            console.log(`New data: ${data.value}`)
+            clients.emit('data', data)
+        })
+    })
+
+    // socket.io connect/disconnect events for clients
+    clients.on('connection', (socket) => {
+        console.log(`New client with id ${socket.id}`)
+
+        socket.on('disconnect', () => {
+            console.log(`Client with id ${socket.id} disconnected`)
+        })
+    })
+
+    // socket.io data event for emitters (incoming data)
+    emitters.on('data', (data) => {
+        
+    })
+
+    // Start HTTP server
     http.listen(PORT, (err) => {
         if (err) throw err
         console.log("Listening on port " + PORT)
