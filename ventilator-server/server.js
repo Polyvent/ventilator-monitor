@@ -11,7 +11,9 @@ const handle    = nextApp.getRequestHandler()
 
 const db        = require('./database.js')
 
-const PORT = 8080
+const PORT      = 8080
+
+var emitterConnections = []
 
 nextApp.prepare()
 .then(() => {
@@ -25,16 +27,39 @@ nextApp.prepare()
         console.log(`New emitter with id ${socket.id}`)
 
         socket.on('disconnect', () => {
+            // De-register emitter
+            emitterConnections = emitterConnections.filter(conn => conn.socketID !== socket.id)
+
             console.log(`Emitter with id ${socket.id} disconnected`)
         })
 
+        // emitter data in event
         socket.on('data', (data) => {
+            if (!emitterConnections.some(conn => conn.socketID === socket.id)) {
+                // New emitter - check if device_id exists in database
+                // TODO: If it doesn't exist, add it with default name (first name: Ventilator, last name: device_id)
+
+                // Register emitter
+                if (emitterConnections.some(conn => conn.deviceID === data.ventdata.device_id)) {
+                    console.log(`ERROR: Duplicate device ID for emitter ${socket.id}`)
+                    socket.disconnect()
+                    return
+                }
+                emitterConnections.push({socketID: socket.id, deviceID: data.ventdata.device_id})
+                console.log(`Emitter ${socket.id} registered as device ${data.ventdata.device_id}`)
+            } else {
+                // Existing emitter - make sure the device ID matches
+                var emitterConn = emitterConnections.find(conn => conn.socketID === socket.id)
+                if (emitterConn.deviceID !== data.ventdata.device_id) {
+                    console.log(`ERROR: Device ID for emitter ${socket.id} changed`)
+                    socket.disconnect()
+                    return
+                }
+            }
+
             db.insert(data)
 
             // TODO: check for anomalies and add to object
-
-            // notify clients about new data
-            console.log(`New data: ${data.value}`)
             clients.emit('data', data)
         })
     })
@@ -46,6 +71,9 @@ nextApp.prepare()
         socket.on('disconnect', () => {
             console.log(`Client with id ${socket.id} disconnected`)
         })
+
+        // Send ventilators list to client
+        socket.emit('ventilators', [])
     })
 
     db.initialize(() => {

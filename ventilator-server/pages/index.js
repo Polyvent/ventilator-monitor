@@ -6,7 +6,7 @@ import VentilatorList   from '../components/VentilatorList';
 import VentilatorView   from '../components/VentilatorView';
 
 import io from 'socket.io-client';
-const socket = io();
+const socket = io('/realtime');
 
 
 export default function Index() {
