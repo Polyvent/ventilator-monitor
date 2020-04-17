@@ -2,26 +2,27 @@
     "settings": {
         "serverURL": "http://localhost:8080",
         "dataAPI": "http://api.theopenvent.com/exampledata/v2/data",
-        "pushInterval": 2000
+        "pushInterval": 1000,
+        "vitalSignAdjustSpeed": 200
     },
     "vital": {
-        "startValues": {
+        "steadyValues": {
             "bloodpressure": {
-                "systole": 120,
+                "systole": 124,
                 "diastole": 80
             },
             "bodyTemperature": 36.6,
             "heartRate": 70,
-            "oxygenSaturation": 94
+            "oxygenSaturation": 93
         },
         "deviation": {
             "bloodpressure": {
-                "systole": 12,
-                "diastole": 8
+                "systole": 4,
+                "diastole": 2
             },
-            "bodyTemperature": 0.5,
-            "heartRate": 10,
-            "oxygenSaturation": 5
+            "bodyTemperature": 0.1,
+            "heartRate": 3,
+            "oxygenSaturation": 1
         }
     }
 }

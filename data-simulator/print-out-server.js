@@ -5,7 +5,7 @@ const server = io.listen(8080)
 server.on('connection', (socket) => {
     console.info(`Client connected [id=${socket.id}]`);
 
-    socket.on('msg', (msg) => {
+    socket.on('data', (msg) => {
         console.log(msg)
         console.log()
     })
