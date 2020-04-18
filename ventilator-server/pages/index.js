@@ -26,7 +26,7 @@ class App extends React.Component {
             ventilators : [],
             activeVentilator: -1,
             frozen: false,
-            showSettings: true //if you see this please CHANGE TO FALSE and commit
+            showSettings: false
         }
 
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
@@ -66,7 +66,7 @@ class App extends React.Component {
     }
 
     render() {
-        var showSettings = this.state.showSettings ? <Settings socket={socket} activeVentilator={this.state.activeVentilator} toggleSettings={this.toggleSettings}/> : "";
+        var showSettings = this.state.showSettings ? <Settings socket={socket} activeVentilator={this.state.activeVentilator} ventilators = {this.state.ventilators} toggleSettings={this.toggleSettings} /> : "";
 
         return (
             <div className="app">

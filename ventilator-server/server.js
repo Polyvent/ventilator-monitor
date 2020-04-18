@@ -22,6 +22,8 @@ function updateClientVentilators() {
 
             return {
                 name: v.firstName + ' ' + v.lastName,
+                firstName: v.firstName,
+                lastName: v.lastName,
                 id: v.deviceID,
                 status: online ? "online" : "offline"
             }
