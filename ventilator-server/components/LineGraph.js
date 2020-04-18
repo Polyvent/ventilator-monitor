@@ -73,7 +73,10 @@ export default class LineGraph extends Component {
                         }
                     }]
                 },
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                legend: {
+                    onClick: null
+                }
             }
         })
 
@@ -133,7 +136,6 @@ export default class LineGraph extends Component {
             // Ventilator changed - clear graph
             this.chart.data.labels = []
             this.chart.data.datasets[0].data = []
-
             // If no ventilator is active, leave graph empty
             if (this.props.activeVentilator == -1)
                 return
