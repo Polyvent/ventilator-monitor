@@ -15,7 +15,7 @@ export default class LineGraph extends Component {
     }
 
     updateSizes() {
-        this.chart.canvas.parentNode.style.height = ((window.innerHeight * 0.5) - 80) + 'px';
+        this.chart.canvas.parentNode.style.height = ((window.innerHeight * 0.35) - 80) + 'px';
         this.chart.canvas.parentNode.style.width = (window.innerWidth - 220) + 'px';
     }
 
@@ -87,7 +87,7 @@ export default class LineGraph extends Component {
                 var time = moment.unix(data.ventdata.time)
 
                 // Remove old data
-                var minTime = moment(time).subtract(this.props.window, 's')
+                var minTime = moment(time).subtract(this.props.window + 5, 's')
                 var lenBefore = myVentData.length
                 while(moment.unix(myVentData[0].ventdata.time).isBefore(minTime)) myVentData.shift()
             }

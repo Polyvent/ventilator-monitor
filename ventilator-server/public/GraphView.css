@@ -1,4 +1,4 @@
 .graph-view {
     width: calc(100vw - 220px);
-    height: calc((100vh * 0.5) - 80px);
+    height: calc((100vh * 0.35) - 80px);
 }

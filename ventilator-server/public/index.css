@@ -47,12 +47,20 @@ body {
 .svg-alarm {
     fill: #ff5722;
 }
+.svg-offline {
+    fill: #afafaf;
+}
+
 .text-okay {
     color: #4cd363;
 }
 .text-alarm {
     color: #ff5722;
 }
+.text-offline {
+    color: #afafaf;
+}
+
 .ventilator-status {
     width: 190px;
     height: 80px;
