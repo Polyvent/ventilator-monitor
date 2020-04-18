@@ -101,32 +101,8 @@ nextApp.prepare()
             var index = emitterConnections.findIndex(conn => conn.socketID === socket.id)
             if(index != -1) {
                 db.updateLimit(emitterConnections[index].deviceID, vital, min, max)
-                switch(vital) {
-                    case "systole":
-                        emitterConnections[index].limits.systole.min = min
-                        emitterConnections[index].limits.systole.max = max
-                        break
-    
-                    case "diastole":
-                        emitterConnections[index].limits.diastole.min = min
-                        emitterConnections[index].limits.diastole.max = max
-                        break
-    
-                    case "bodyTemperature":
-                        emitterConnections[index].limits.bodyTemperature.min = min
-                        emitterConnections[index].limits.bodyTemperature.max = max
-                        break
-    
-                    case "heartRate":
-                        emitterConnections[index].limits.heartRate.min = min
-                        emitterConnections[index].limits.heartRate.max = max
-                        break
-    
-                    case "oxygenSaturation":
-                        emitterConnections[index].limits.oxygenSaturation.min = min
-                        emitterConnections[index].limits.oxygenSaturation.max = max
-                        break
-                }
+                emitterConnections[index].limits[vital].min = min
+                emitterConnections[index].limits[vital].max = max
             }
         })
 
