@@ -26,7 +26,7 @@ class App extends React.Component {
             ventilators : [],
             activeVentilator: -1,
             frozen: false,
-            showSettings: false //if you see this please CHANGE TO FALSE and commit
+            showSettings: false
         }
 
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
