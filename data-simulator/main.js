@@ -22,7 +22,7 @@ const ioClient = io.connect(settings.serverURL);
 const fetch = require('node-fetch');
 
 var emitIntervalHandle      = null;
-var adjustIntervalHandel    = null;
+var adjustIntervalHandle    = null;
 
 var fetchCounter = 0;
 var currentPushInterval = settings.pushInterval;
@@ -34,18 +34,14 @@ var currentBodyTemperature  = vital.steadyValues.bodyTemperature;
 var currentHeartRate        = vital.steadyValues.heartRate;
 var currentOxygenSaturation = vital.steadyValues.oxygenSaturation;
 
-adjustIntervalHandel = setInterval(function(){ vitalSignAdjustment(); }, settings.vitalSignAdjustSpeed);
+adjustIntervalHandle = setInterval(function(){ vitalSignAdjustment(); }, settings.vitalSignAdjustSpeed);
 
 ioClient.on('connect', (socket) => {
     console.info("Start fetching data...");
     emitIntervalHandle = setInterval(function(){ dataEmit(); }, settings.pushInterval);
 });
 
-ioClient.on('disconnect', (socket) => {
-    clearInterval(emitIntervalHandle)
-    console.log("Disconnected.")
-    process.exit()
-});
+ioClient.on('disconnect', (socket) => endProcessAndUnlinkFile());
 
 function dataEmit() {
 
@@ -141,17 +137,21 @@ function configReload () {
     }
 
     if (currentVitalSignAdjustSpeed != settings.vitalSigneAdjustSpeed) {
-        clearInterval(adjustIntervalHandel);
-        adjustIntervalHandel        = setInterval(function(){ vitalSignAdjustment(); }, settings.vitalSignAdjustSpeed);
+        clearInterval(adjustIntervalHandle);
+        adjustIntervalHandle        = setInterval(function(){ vitalSignAdjustment(); }, settings.vitalSignAdjustSpeed);
         currentVitalSignAdjustSpeed = settings.vitalSignAdjustSpeed;
     }
 }
 
-process.on('SIGINT', function() {
-    console.log("  Caught interrupt signal");
+process.on('SIGINT', () => endProcessAndUnlinkFile());
+
+function endProcessAndUnlinkFile() {
+    console.log("Disconnected.");
+    clearInterval(emitIntervalHandle);
+    clearInterval(adjustIntervalHandle);
     fs.unlink('./config/'+ ventNum + '.json', (err) => {
         if (err) throw err;
         console.log('./config/'+ ventNum + '.json was deleted');
         process.exit();
       });
-});
+}
