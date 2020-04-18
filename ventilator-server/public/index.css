@@ -100,6 +100,7 @@ body {
     top: 80px;
     right: 0;
     height: calc(100vh - 80px);
+    overflow-y: scroll;
     width: 220px;
 }
 .side-info ul {
@@ -130,8 +131,25 @@ body {
 }
 .ventilator-info {
     border-bottom: 1px solid #60656A;
-    height: 55px;
+    height: 50px;
     padding-top: 5px;
+}
+.ventilator-category-li {
+    border-bottom: 1px solid #60656A;
+    background-color: #222831;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.ventilator-category-li p {
+    margin: 0;
+    padding: 0;
+    margin-left: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.side-category:first-child li:first-child {
+    border-top: 1px solid #60656A;
 }
 
 
@@ -158,7 +176,7 @@ body {
     vertical-align: bottom;
     border-radius: 20px;
 
-    box-shadow: -10px 5px 10px rgb(100, 100, 100, 0.5);
+    box-shadow: -5px 2px 8px rgb(100, 100, 100, 0.7);
 }
 .freeze-button {
     position: relative;
@@ -179,7 +197,7 @@ body {
     transition: 0.3s;
     cursor: pointer;
     background-color: #222831;
-    box-shadow: -10px 5px 10px rgb(100, 100, 100, 0.9);
+    box-shadow: -5px 2px 8px rgb(100, 100, 100, 0.9);
 }
 .bottom-buttons li:hover .freeze-button {
     transition: 0.5s;
