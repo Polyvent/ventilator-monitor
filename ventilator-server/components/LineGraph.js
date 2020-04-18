@@ -77,7 +77,6 @@ export default class LineGraph extends Component {
             this.chart.data.datasets[0].data.push(elem.value)
 
             var minTime = moment(elem.time).subtract(this.props.window, 's')
-            console.log("elem.time: ", elem.time, " minTime: ", minTime)
             while(this.chart.data.labels[0].isBefore(minTime)) {
                 this.chart.data.labels.shift()
                 this.chart.data.datasets[0].data.shift()
