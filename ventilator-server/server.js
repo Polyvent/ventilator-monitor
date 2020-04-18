@@ -107,13 +107,18 @@ nextApp.prepare()
         })
 
         socket.on('config', (config) => {
+            console.log("Config event for device " + config.device_id)
+            console.log(config)
             if (config.ventilator !== undefined) {
-                db.addVentilator(config.ventilator)
+                config.ventilator.deviceID = config.device_id
+                db.addVentilator(config.ventilator, () => {
+                    updateClientVentilators()
+                })
             }
 
             if (config.limits !== undefined) {
                 config.limits.forEach(l => {
-                    db.updateLimit(config.device_id, l.vital, l.min, l.max)
+                    db.updateLimit(config.device_id, l.vital, l.min, l.max, () => {})
                 })
             }
         })

@@ -36,6 +36,7 @@ class App extends React.Component {
 
     componentDidMount() {
         socket.on('ventilators', (data) => {
+            console.log("New ventilators: ", data)
             this.setState({
                 ventilators: data
                 // ventilators: data.map(d => {
@@ -47,7 +48,8 @@ class App extends React.Component {
                 // })
             })
 
-            this.updateActiveVentilator(this.state.ventilators.length > 0 ? this.state.ventilators[0].id : -1)
+            if (this.state.activeVentilator === -1)
+                this.updateActiveVentilator(this.state.ventilators.length > 0 ? this.state.ventilators[0].id : -1)
         })
     }
 
@@ -64,7 +66,7 @@ class App extends React.Component {
     }
 
     render() {
-        var showSettings = this.state.showSettings ? <Settings toggleSettings={this.toggleSettings}/> : "";
+        var showSettings = this.state.showSettings ? <Settings socket={socket} activeVentilator={this.state.activeVentilator} toggleSettings={this.toggleSettings}/> : "";
 
         return (
             <div className="app">

@@ -65,8 +65,9 @@ exports.initialize = (callback) => {
 exports.addVentilator = (ventilator, callback) => {
     exports.ventilatorExists(ventilator.deviceID, (exists) => {
         if (exists) {
+            console.log("Updating ventilator " + ventilator.deviceID)
             db.serialize(() => {
-                var stmt = db.prepare("UPDATE ventilators SET firstName = ? AND lastName = ? WHERE deviceID = ?")
+                var stmt = db.prepare("UPDATE ventilators SET firstName = ?, lastName = ? WHERE deviceID = ?")
                 stmt.run(
                     ventilator.firstName,
                     ventilator.lastName,
@@ -76,6 +77,7 @@ exports.addVentilator = (ventilator, callback) => {
                 })
             })
         } else {
+            console.log("Adding ventilator " + ventilator.deviceID)
             db.serialize(() => {
                 var stmt = db.prepare("INSERT INTO ventilators VALUES (?,?,?,90,140,60,90,35.5,37.5,60,130,90,101)")
                 stmt.run(
@@ -102,13 +104,15 @@ exports.ventilatorExists = (deviceID, callback) => {
     })
 }
 
-exports.updateLimit = (deviceID, vital, min, max) => {
+exports.updateLimit = (deviceID, vital, min, max, callback) => {
     var s1 = vital + "Min"
     var s2 = vital + "Max"
     db.serialize(function () {
         var stmt = db.prepare("UPDATE ventilators SET ? = ? AND ? = ? WHERE deviceID = ?")
         stmt.run(s1,min,s2,max,deviceID)
-        stmt.finalize()
+        stmt.finalize(err => {
+            callback()
+        })
     })
 }
 
