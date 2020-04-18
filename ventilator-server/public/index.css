@@ -370,7 +370,15 @@ body {
     color: black;
 }
 
-
+.bottom-buttons .button-alarm-active {
+    /*background-color: #05e2ed;*/
+    -webkit-animation: glowingRed 1500ms infinite;
+    -moz-animation: glowingRed 1500ms infinite;
+    -o-animation: glowingRed 1500ms infinite;
+    animation: glowingRed 1500ms infinite;
+    
+    /*color: black;*/
+}
 
 .settings-background {
     position: fixed;

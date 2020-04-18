@@ -9,7 +9,6 @@ export default class SideCategory extends React.Component {
     }
 
     render() {
-        console.log(`Data: ` + JSON.stringify(this.props.data))
         return(
             <div className="side-category">
                 <div>

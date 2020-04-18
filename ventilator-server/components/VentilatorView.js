@@ -50,19 +50,19 @@ export default class VentilatorList extends React.Component {
             vitalsigns: {
                 SBP: {
                     value: data.vitalsigns.bloodpressure.systole,
-                    alarm: data.alarms.systole
+                    alarm: data.alarms !== undefined && data.alarms.systole
                 }, DBP: {
                     value: data.vitalsigns.bloodpressure.diastole,
-                    alarm: data.alarms.diastole
+                    alarm: data.alarms !== undefined && data.alarms.diastole
                 }, Temp: {
                     value: data.vitalsigns.bodyTemperature,
-                    alarm: data.alarms.bodyTemperature
+                    alarm: data.alarms !== undefined && data.alarms.bodyTemperature
                 }, Pulse: {
                     value: data.vitalsigns.heartRate,
-                    alarm: data.alarms.heartRate
+                    alarm: data.alarms !== undefined && data.alarms.heartRate
                 }, SaO2: {
                     value: data.vitalsigns.oxygenSaturation,
-                    alarm: data.alarms.oxygenSaturation
+                    alarm: data.alarms !== undefined && data.alarms.oxygenSaturation
                 }
             }
         }
