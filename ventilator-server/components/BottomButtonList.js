@@ -8,10 +8,11 @@ export default class BottomButtonList extends React.Component {
     }
 
     render() {
+        var frozenClass = this.props.frozen ? "button-frozen" : ""
         return(
             <div className="bottom-buttons">
                 <ul>
-                    <li><div className="freeze-button">FREEZE</div></li>
+                    <li onClick={() => this.props.toggleFreeze()} className={frozenClass}><div className="freeze-button">FREEZE</div></li>
                     <li><div className="settings-button">{cogwheel}</div></li>
                 </ul>
             </div>

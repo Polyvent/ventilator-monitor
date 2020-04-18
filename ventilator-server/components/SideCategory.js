@@ -15,7 +15,7 @@ export default class SideCategory extends React.Component {
     render() {
         if(this.props.data !== undefined) {
             return(
-                <div class="side-category">
+                <div className="side-category">
                     <div>
                         <ul>
                             <li className="ventilator-category-li">

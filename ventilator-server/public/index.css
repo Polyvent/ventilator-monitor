@@ -31,6 +31,10 @@ body {
     font-family: "Roboto";
     margin: 0;
 }
+.app {
+    width: 100vw;
+    height: 100vh;
+}
 .ventilator-list {
     height: 80px;
     background-color: #393e46;
@@ -50,6 +54,9 @@ body {
 .svg-offline {
     fill: #afafaf;
 }
+.svg-frozen {
+    fill: #05e2ed;
+}
 
 .text-okay {
     color: #4cd363;
@@ -60,6 +67,11 @@ body {
 .text-offline {
     color: #afafaf;
 }
+.text-frozen {
+    color: #05e2ed;
+}
+
+
 
 .ventilator-status {
     width: 190px;
@@ -210,12 +222,17 @@ body {
     background-color: #222831;
     box-shadow: -5px 2px 8px rgb(100, 100, 100, 0.9);
 }
-.bottom-buttons li:hover .freeze-button {
-    transition: 0.5s;
-    color: #05e2ed;
-}
 
 .bottom-buttons li:hover .settings-button {
     transition: 1s cubic-bezier(0.65, 0, 0.35, 1);;
     transform: rotate(180deg);
+}
+
+.bottom-buttons .button-frozen {
+    background-color: #05e2ed;
+    color: black;
+}
+.bottom-buttons .button-frozen:hover, .bottom-buttons .button-frozen:active{
+    background-color: #02b8c2;
+    color: black;
 }
