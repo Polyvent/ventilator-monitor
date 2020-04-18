@@ -103,6 +103,10 @@ body {
     overflow-y: scroll;
     width: 220px;
 }
+::-webkit-scrollbar {
+    width: 0px;
+}
+
 .side-info ul {
     list-style-type: none;
     margin: 0;
@@ -151,7 +155,6 @@ body {
 .side-category:first-child li:first-child {
     border-top: 1px solid #60656A;
 }
-
 
 
 
