@@ -31,27 +31,6 @@ class App extends React.Component {
             status: "alarm"
         }]
 
-        //Temporary, should be updated by socket.io regularly
-        this.ventilatorData = [{
-            ventId: 0,
-            timestamp: new Date(),
-            data: {
-                VT: 18,
-                PEEP: 9.2,
-                FiO2: 15,
-                IVe: 123
-            }
-        }, {
-            ventId: 1,
-            timestamp: new Date(),
-            data: {
-                VT: 15,
-                PEEP: 12.3,
-                FiO2: 17,
-                IVe: 456
-            }
-        }]
-
 
         this.state = {activeVentilator: this.ventilators[0].id}
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
