@@ -13,7 +13,6 @@ export default class SideCategory extends React.Component {
     }
 
     render() {
-        console.log({data: this.props.data })
         if(this.props.data !== undefined) {
             return(
                 <div class="side-category">
