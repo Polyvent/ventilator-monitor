@@ -15,6 +15,20 @@ const PORT      = 8080
 
 var emitterConnections = []
 
+function updateClientVentilators() {
+    db.getVentilators(vents => {
+        clients.emit('ventilators', vents.map(v => {
+            var online = emitterConnections.some(c => c.deviceID === v.deviceID)
+
+            return {
+                name: v.firstName + ' ' + v.lastName,
+                id: v.deviceID,
+                status: online ? "okay" : "offline"
+            }
+        }))
+    })
+}
+
 nextApp.prepare()
 .then(() => {
     // Default route for react/nextjs
@@ -31,6 +45,7 @@ nextApp.prepare()
             emitterConnections = emitterConnections.filter(conn => conn.socketID !== socket.id)
 
             console.log(`Emitter with id ${socket.id} disconnected`)
+            updateClientVentilators()
         })
 
         // emitter data in event
@@ -43,9 +58,7 @@ nextApp.prepare()
                     } else {
                         console.log(`Adding Ventilator ${data.ventdata.device_id} to database`)
                         db.addVentilator({"deviceID": data.ventdata.device_id, "firstName": "Ventilator", "lastName": String(data.ventdata.device_id)}, () => {
-                            db.getVentilators(vents => {
-                                clients.emit('ventilators', vents)
-                            })
+                            updateClientVentilators()
                         })
                     }
                 })
@@ -58,6 +71,7 @@ nextApp.prepare()
                 }
                 emitterConnections.push({socketID: socket.id, deviceID: data.ventdata.device_id})
                 console.log(`Emitter ${socket.id} registered as device ${data.ventdata.device_id}`)
+                updateClientVentilators()
             } else {
                 // Existing emitter - make sure the device ID matches
                 var emitterConn = emitterConnections.find(conn => conn.socketID === socket.id)
@@ -84,9 +98,7 @@ nextApp.prepare()
         })
 
         // Send ventilators list to client
-        db.getVentilators(vents => {
-            socket.emit('ventilators', vents)
-        })
+        updateClientVentilators()
     })
 
     db.initialize(() => {

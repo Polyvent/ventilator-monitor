@@ -32,13 +32,14 @@ class App extends React.Component {
     componentDidMount() {
         socket.on('ventilators', (data) => {
             this.setState({
-                ventilators: data.map(d => {
-                    return {
-                        name: d.firstName + " " + d.lastName,
-                        id: d.deviceID,
-                        status: "okay"
-                    }
-                })
+                ventilators: data
+                // ventilators: data.map(d => {
+                //     return {
+                //         name: d.firstName + " " + d.lastName,
+                //         id: d.deviceID,
+                //         status: "okay"
+                //     }
+                // })
             })
 
             this.updateActiveVentilator(this.state.ventilators.length > 0 ? this.state.ventilators[0].id : -1)
