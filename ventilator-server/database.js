@@ -49,18 +49,33 @@ exports.initialize = (callback) => {
 
 exports.addVentilator = (ventilator) => {
     db.serialize(function () {
-        var stmt = db.prepare("INSERT INTO dataset VALUES (?,?,?)")
-        stmt.run(
-            ventilator.deviceID,
-            ventilator.firstName,
-            ventilator.lastName)
+        if(exports.ventilatorExists(ventilator.deviceID)) {
+            var stmt = db.prepare("INSERT INTO ventilators VALUES (?,?,?)")
+            stmt.run(
+                ventilator.deviceID,
+                ventilator.firstName,
+                ventilator.lastName)
+            stmt.finalize()
+        }
+        else {
+            var stmt = db.prepare("UPDATE ventilators SET firstName = ? AND lastName = ? WHERE deviceID = ?")
+            stmt.run(
+                ventilator.firstName,
+                ventilator.lastName,
+                ventilator.deviceID)
+            stmt.finalize()
+        }
+    })
+}
 
-        stmt.finalize()
+exports.getVentilators = () => {
+    db.all("SELECT * FROM ventilators", (err,rows) => {
+        return rows
     })
 }
 
 exports.ventilatorExists = (deviceID) => {
-    db.run("SELECT * FROM dataset WHERE deviceID = ?", [deviceID], (err, rows) => {
+    db.all("SELECT * FROM dataset WHERE deviceID = ?", [deviceID], (err, rows) => {
         return (rows.length > 0)
     })
 }

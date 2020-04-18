@@ -37,8 +37,13 @@ nextApp.prepare()
         socket.on('data', (data) => {
             if (!emitterConnections.some(conn => conn.socketID === socket.id)) {
                 // New emitter - check if device_id exists in database
-                // TODO: If it doesn't exist, add it with default name (first name: Ventilator, last name: device_id)
-
+                if(!db.ventilatorExists(data.ventdata.device_id)) {
+                    console.log(`Adding Ventilator ${data.ventdata.device_id} to database`)
+                    db.addVentilator({"deviceID": data.ventdata.device_id, "firstName": "Ventilator", "lastName": String(data.ventdata.device_id)})
+                }
+                else {
+                    console.log(`Ventilator ${data.ventdata.device_id} already in database`)
+                }
                 // Register emitter
                 if (emitterConnections.some(conn => conn.deviceID === data.ventdata.device_id)) {
                     console.log(`ERROR: Duplicate device ID for emitter ${socket.id}`)
