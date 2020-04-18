@@ -2,7 +2,7 @@
     "settings": {
         "serverURL": "http://localhost:8080/emit",
         "dataAPI": "https://api.theopenvent.com/exampledata/v2/data",
-        "pushInterval": 500,
+        "pushInterval": 1000,
         "vitalSignAdjustSpeed": 250
     },
     "vital": {
