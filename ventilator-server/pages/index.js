@@ -36,6 +36,12 @@ class App extends React.Component {
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
     }
 
+    componentDidMount() {
+        socket.on('ventilators', (data) => {
+            console.log("Ventilators: ", data)
+        })
+    }
+
     updateActiveVentilator(ventId) {
         this.setState({activeVentilator: ventId})
     }

@@ -78,7 +78,10 @@ nextApp.prepare()
         })
 
         // Send ventilators list to client
-        socket.emit('ventilators', [])
+        db.getVentilators(vents => {
+            console.log("Sending ventilators ", vents)
+            socket.emit('ventilators', vents)
+        })
     })
 
     db.initialize(() => {

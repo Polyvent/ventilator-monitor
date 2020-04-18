@@ -48,35 +48,38 @@ exports.initialize = (callback) => {
 }
 
 exports.addVentilator = (ventilator) => {
-    db.serialize(function () {
-        if(exports.ventilatorExists(ventilator.deviceID)) {
-            var stmt = db.prepare("INSERT INTO ventilators VALUES (?,?,?)")
-            stmt.run(
-                ventilator.deviceID,
-                ventilator.firstName,
-                ventilator.lastName)
-            stmt.finalize()
-        }
-        else {
-            var stmt = db.prepare("UPDATE ventilators SET firstName = ? AND lastName = ? WHERE deviceID = ?")
-            stmt.run(
-                ventilator.firstName,
-                ventilator.lastName,
-                ventilator.deviceID)
-            stmt.finalize()
+    exports.ventilatorExists(ventilator.deviceID, (exists) => {
+        if (exists) {
+            db.serialize(() => {
+                var stmt = db.prepare("UPDATE ventilators SET firstName = ? AND lastName = ? WHERE deviceID = ?")
+                stmt.run(
+                    ventilator.firstName,
+                    ventilator.lastName,
+                    ventilator.deviceID)
+                stmt.finalize()
+            })
+        } else {
+            db.serialize(() => {
+                var stmt = db.prepare("INSERT INTO ventilators VALUES (?,?,?)")
+                stmt.run(
+                    ventilator.deviceID,
+                    ventilator.firstName,
+                    ventilator.lastName)
+                stmt.finalize()
+            })
         }
     })
 }
 
-exports.getVentilators = () => {
+exports.getVentilators = (callback) => {
     db.all("SELECT * FROM ventilators", (err,rows) => {
-        return rows
+        callback(rows)
     })
 }
 
-exports.ventilatorExists = (deviceID) => {
+exports.ventilatorExists = (deviceID, callback) => {
     db.all("SELECT * FROM dataset WHERE deviceID = ?", [deviceID], (err, rows) => {
-        return (rows.length > 0)
+        callback(rows.length > 0)
     })
 }
 
