@@ -23,10 +23,12 @@ class App extends React.Component {
         //Temporary
         this.state =  {
             ventilators : [],
-            activeVentilator: -1
+            activeVentilator: -1,
+            frozen: false
         }
 
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
+        this.toggleFreeze = this.toggleFreeze.bind(this);
     }
 
     componentDidMount() {
@@ -45,16 +47,23 @@ class App extends React.Component {
         })
     }
 
+    toggleFreeze() {
+        this.setState({frozen: !this.state.frozen})
+    }
+
     updateActiveVentilator(ventId) {
         this.setState({activeVentilator: ventId})
     }
 
     render() {
+        var frozenClass = this.state.frozen ? "frozen-text" : ""
         return (
-            <div>
-                <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
-                <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} />
-                <BottomButtonList />
+            <div className={"app " + frozenClass}>
+                <div>
+                    <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
+                    <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} frozen={this.state.frozen}/>
+                    <BottomButtonList toggleFreeze={this.toggleFreeze} frozen={this.state.frozen}/>
+                </div>
             </div>
         );
     }

@@ -31,6 +31,10 @@ body {
     font-family: "Roboto";
     margin: 0;
 }
+.app {
+    width: 100vw;
+    height: 100vh;
+}
 .ventilator-list {
     height: 80px;
     background-color: #393e46;
@@ -202,7 +206,7 @@ body {
     background-color: #222831;
     box-shadow: -5px 2px 8px rgb(100, 100, 100, 0.9);
 }
-.bottom-buttons li:hover .freeze-button {
+.bottom-buttons li:hover .freeze-button :not(.frozen){
     transition: 0.5s;
     color: #05e2ed;
 }
@@ -210,4 +214,16 @@ body {
 .bottom-buttons li:hover .settings-button {
     transition: 1s cubic-bezier(0.65, 0, 0.35, 1);;
     transform: rotate(180deg);
+}
+
+.bottom-buttons .frozen {
+    background-color: #3dadff;
+    color: black;
+}
+.bottom-buttons .frozen:hover, .bottom-buttons .frozen:active{
+    background-color: #0d99ff;
+    color: black;
+}
+.frozen-text {
+    background: #b6defc;
 }
