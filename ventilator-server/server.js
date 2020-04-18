@@ -106,6 +106,18 @@ nextApp.prepare()
             }
         })
 
+        socket.on('config', (config) => {
+            if (config.ventilator !== undefined) {
+                db.addVentilator(config.ventilator)
+            }
+
+            if (config.limits !== undefined) {
+                config.limits.forEach(l => {
+                    db.updateLimit(config.device_id, l.vital, l.min, l.max)
+                })
+            }
+        })
+
         // Send ventilators list to client
         updateClientVentilators()
     })
