@@ -31,10 +31,10 @@ export default class LineGraph extends Component {
         this.chart = new Chart(ctx, {
             type: "line",
             data: {
-                labels: [],
+                labels: this.props.labels,
                 datasets: [{
-                    label: "ExpiredCO2",
-                    data: []
+                    label: this.props.label,
+                    data: this.props.data
                 }]
             },
             options: {
@@ -47,14 +47,16 @@ export default class LineGraph extends Component {
                             }
                         },
                         ticks:{
+                            min: this.props.xmin,
+                            max: this.props.xmax,
                             maxTicksLimit: 5,
                             maxRotation: 0
                         }
                     }],
                     yAxes: [{
                         ticks: {
-                            min: 0,
-                            max: 6
+                            suggestedMin: this.props.ymin,
+                            suggestedMax: this.props.ymax
                         }
                     }]
                 },
@@ -63,30 +65,41 @@ export default class LineGraph extends Component {
         })
 
         this.props.socket.on('data', (data) => {
-            var time = moment.unix(data.ventdata.time)
-            this.chart.data.labels.push(time)
-            this.chart.data.datasets[0].data.push(data.ventdata.processed.ExpiredCO2)
-            var minTime = moment(time).subtract(35, 's')
+            var elem = this.props.callback(data)
+            // Enforce monotonic time
+            var lastLabel = this.chart.data.labels[this.chart.data.labels.length - 1]
+            if (this.chart.data.labels.length > 0 && elem.time.isSameOrBefore(lastLabel)) {
+                //console.log("Ignored duplicate/nonmonotonic timestamp: elem.time: ", elem.time, " lasttime: ", lastLabel)
+                return
+            }
 
-            console.log(`Inserting timestamp ${time}, minTime ${minTime}`)
+            this.chart.data.labels.push(elem.time)
+            this.chart.data.datasets[0].data.push(elem.value)
 
-            // remove old values
-            while (this.chart.data.labels.length > 0) {
-                if (this.chart.data.labels[0].isBefore(minTime)) {
-                    console.log(`Removing timestamp ${this.chart.data.labels[0]}`)
-                    this.chart.data.labels.shift()
-                    this.chart.data.datasets[0].data.shift()
-                } else {
-                    break
-                }
+            var minTime = moment(elem.time).subtract(this.props.window, 's')
+            console.log("elem.time: ", elem.time, " minTime: ", minTime)
+            while(this.chart.data.labels[0].isBefore(minTime)) {
+                this.chart.data.labels.shift()
+                this.chart.data.datasets[0].data.shift()
             }
 
             minTime.add(5,'s')
             this.chart.options.scales.xAxes[0].ticks.min = minTime
-            this.chart.options.scales.xAxes[0].ticks.max = time
+            this.chart.options.scales.xAxes[0].ticks.max = elem.time
+
             this.chart.update()
         })
     }
+
+    // componentDidUpdate() {
+    //     // this.chart.data.labels = this.props.data.map(d => d.time)
+    //     // this.chart.data.datasets[0].data = this.props.data.map(d => d.value)
+    //     this.chart.options.scales.xAxes[0].ticks.min = this.props.xmin
+    //     this.chart.options.scales.xAxes[0].ticks.max = this.props.xmax
+    //     this.chart.options.scales.yAxes[0].ticks.suggestedMin = this.props.ymin
+    //     this.chart.options.scales.yAxes[0].ticks.suggestedMax = this.props.ymax
+    //     this.chart.update()
+    // }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateSizes);
