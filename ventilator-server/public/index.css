@@ -27,27 +27,6 @@
 @keyframes easeInElastic {
     from { transform: scale(0.9); }
     to   { transform: scale(1); }
-	
-}
-
-body {
-    background-color: #eeeeee;
-    color: black;
-    font-family: "Roboto";
-    margin: 0;
-}
-.app {
-    width: 100vw;
-    height: 100vh;
-}
-.ventilator-list {
-    height: 80px;
-    background-color: #393e46;
-    color: white;
-
-    -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
 }
 
 @-webkit-keyframes glowingBlue {
@@ -71,25 +50,109 @@ body {
     100% { background-color: #393e46; }
 }
 
-@-webkit-keyframes glowingRed {
+@-webkit-keyframes glowingRedBG {
     0% { background-color: #393e46; }
-    50% { background-color: #FF0000; }
+    50% { background-color: var(--red); }
     100% { background-color: #393e46; }
 }
-@-moz-keyframes glowingRed {
+@-moz-keyframes glowingRedBG {
     0% { background-color: #393e46; }
-    50% { background-color: #FF0000; }
+    50% { background-color: var(--red); }
     100% { background-color: #393e46; }
 }
-@-o-keyframes glowingRed {
+@-o-keyframes glowingRedBG {
     0% { background-color: #393e46; }
-    50% { background-color: #FF0000; }
+    50% { background-color: var(--red); }
     100% { background-color: #393e46; }
 }
-@keyframes glowingRed {
+@keyframes glowingRedBG {
     0% { background-color: #393e46; }
-    50% { background-color: #FF0000; }
+    50% { background-color: var(--red); }
     100% { background-color: #393e46; }
+}
+
+@-webkit-keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+@-moz-keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+@-o-keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+@keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+
+@-webkit-keyframes glowingRedColor {
+    0% { background-color: white; }
+    50% { background-color: var(--red); }
+    100% { background-color: white; }
+}
+@-moz-keyframes glowingRedColor {
+    0% { background-color: white; }
+    50% { background-color: var(--red); }
+    100% { background-color: white; }
+}
+@-o-keyframes glowingRedColor {
+    0% { color: white; }
+    50% { color: var(--red); }
+    100% { color: white; }
+}
+@keyframes glowingRedColor {
+    0% { color: white; }
+    50% { color: var(--red); }
+    100% { color: white; }
+}
+
+:root {
+    --dark-gray: #222831;
+    --gray: #393e46;
+    --light-gray: rgb(200, 200, 200);
+    --cyan: #05e2ed;
+    --red: #FF3F37;
+}
+
+body {
+    background-color: #eeeeee;
+    color: black;
+    font-family: "Roboto";
+    margin: 0;
+}
+.app {
+    width: 100vw;
+    height: 100vh;
+}
+.ventilator-list {
+    height: 80px;
+    background-color: #393e46;
+    color: white;
+
+    -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+}
+
+.ventilator-list-alarm {
+    -webkit-animation: glowingRedFill 1500ms infinite;
+    -moz-animation: glowingRedFill 1500ms infinite;
+    -o-animation: glowingRedFill 1500ms infinite;
+    animation: glowingRedFill 1500ms infinite;
+}
+
+.side-info-alarm {
+    -webkit-animation: glowingRedColor 1500ms infinite;
+    -moz-animation: glowingRedColor 1500ms infinite;
+    -o-animation: glowingRedColor 1500ms infinite;
+    animation: glowingRedColor 1500ms infinite;
 }
 
 .profile-img {
@@ -126,8 +189,6 @@ body {
     text-align: center;
     color: #afafaf;
 }
-
-
 
 .ventilator-status {
     width: 220px;
@@ -229,9 +290,6 @@ body {
     height: 50px;
     padding-top: 5px;
 }
-.ventilator-info-alarm {
-    background-color: #FF3F37;
-}
 .ventilator-category-li {
     background-color: #222831;
     margin: 0;
@@ -319,27 +377,18 @@ body {
 }
 
 .bottom-buttons .button-frozen {
-    /*background-color: #05e2ed;*/
     -webkit-animation: glowingBlue 1500ms infinite;
     -moz-animation: glowingBlue 1500ms infinite;
     -o-animation: glowingBlue 1500ms infinite;
     animation: glowingBlue 1500ms infinite;
     
-    /*color: black;*/
 }
-/*.bottom-buttons .button-frozen:hover, .bottom-buttons .button-frozen:active{
-    background-color: #02b8c2;
-    color: black;
-}*/
 
 .bottom-buttons .button-alarm-active {
-    /*background-color: #05e2ed;*/
-    -webkit-animation: glowingRed 1500ms infinite;
-    -moz-animation: glowingRed 1500ms infinite;
-    -o-animation: glowingRed 1500ms infinite;
-    animation: glowingRed 1500ms infinite;
-    
-    /*color: black;*/
+    -webkit-animation: glowingRedBG 1500ms infinite;
+    -moz-animation: glowingRedBG 1500ms infinite;
+    -o-animation: glowingRedBG 1500ms infinite;
+    animation: glowingRedBG 1500ms infinite;
 }
 
 .settings-background {
