@@ -37,6 +37,10 @@ export default class VentilatorList extends React.Component {
 
     componentDidMount() {
         this.props.socket.on('data', (data) => {
+            // Ignore data for non-active ventilators
+            if (data.ventdata.device_id !== this.props.activeVentilator)
+                return
+
             this.setState({data: this.showSide(data)})
         })
     }

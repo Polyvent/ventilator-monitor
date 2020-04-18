@@ -40,12 +40,18 @@ export default class LineGraph extends Component {
                 }]
             },
             options: {
+                legend: {
+                    labels: {
+                        boxWidth: 0,
+                        fontSize: 18
+                    }
+                },
                 scales: {
                     xAxes: [{
                         type: 'time',
                         time: {
                             displayFormats: {
-                                second: 'h:mm:ss a'
+                                second: 'H:mm:ss'
                             }
                         },
                         ticks:{
@@ -58,7 +64,10 @@ export default class LineGraph extends Component {
                     yAxes: [{
                         ticks: {
                             suggestedMin: this.props.ymin,
-                            suggestedMax: this.props.ymax
+                            suggestedMax: this.props.ymax,
+                            callback: (value, index, values) => {
+                                return (Math.abs(value) > 1000) ? (value/1000) + 'k' : value;
+                            }
                         }
                     }]
                 },
