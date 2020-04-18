@@ -4,6 +4,8 @@ import moment from 'moment'
 
 export default class LineGraph extends Component {
     chartRef = React.createRef()
+    currentVent = null
+    ventData = []
 
     constructor(props) {
         super(props)
@@ -65,18 +67,41 @@ export default class LineGraph extends Component {
         })
 
         this.props.socket.on('data', (data) => {
-            var elem = this.props.callback(data)
-            // Enforce monotonic time
-            var lastLabel = this.chart.data.labels[this.chart.data.labels.length - 1]
-            if (this.chart.data.labels.length > 0 && elem.time.isSameOrBefore(lastLabel)) {
-                //console.log("Ignored duplicate/nonmonotonic timestamp: elem.time: ", elem.time, " lasttime: ", lastLabel)
-                return
+            // Store data for all ventilators
+            var index = this.ventData.findIndex(d => d.device_id === data.ventdata.device_id)
+            if (index === -1) {
+                // New ventilator
+                this.ventData.push({
+                    device_id: data.ventdata.device_id,
+                    data: [data]
+                })
+            } else {
+                // Existing ventilator - enforce monotonic time
+                var myVentData = this.ventData[index].data
+                var myTime = moment.unix(data.ventdata.time)
+                if (moment.unix(myVentData[myVentData.length - 1].ventdata.time).isSameOrAfter(myTime))
+                    return
+
+                // Push new data
+                this.ventData[index].data.push(data)
+                var time = moment.unix(data.ventdata.time)
+
+                // Remove old data
+                var minTime = moment(time).subtract(this.props.window, 's')
+                var lenBefore = myVentData.length
+                while(moment.unix(myVentData[0].ventdata.time).isBefore(minTime)) myVentData.shift()
             }
+
+            // Only proceed for active ventilators
+            if (data.ventdata.device_id !== this.props.activeVentilator)
+                return
+
+            var elem = this.props.callback(data)
 
             this.chart.data.labels.push(elem.time)
             this.chart.data.datasets[0].data.push(elem.value)
 
-            var minTime = moment(elem.time).subtract(this.props.window, 's')
+            var minTime = moment(elem.time).subtract(this.props.window + 5, 's')
             while(this.chart.data.labels[0].isBefore(minTime)) {
                 this.chart.data.labels.shift()
                 this.chart.data.datasets[0].data.shift()
@@ -90,15 +115,32 @@ export default class LineGraph extends Component {
         })
     }
 
-    // componentDidUpdate() {
-    //     // this.chart.data.labels = this.props.data.map(d => d.time)
-    //     // this.chart.data.datasets[0].data = this.props.data.map(d => d.value)
-    //     this.chart.options.scales.xAxes[0].ticks.min = this.props.xmin
-    //     this.chart.options.scales.xAxes[0].ticks.max = this.props.xmax
-    //     this.chart.options.scales.yAxes[0].ticks.suggestedMin = this.props.ymin
-    //     this.chart.options.scales.yAxes[0].ticks.suggestedMax = this.props.ymax
-    //     this.chart.update()
-    // }
+    componentDidUpdate() {
+        if (this.props.activeVentilator !== this.currentVent) {
+            // Ventilator changed - clear graph
+            this.chart.data.labels = []
+            this.chart.data.datasets[0].data = []
+
+            // Load data from new ventilator
+            var index = this.ventData.findIndex(d => d.device_id === this.props.activeVentilator)
+            if (index !== -1) {
+                var data = this.ventData[index].data
+                data.forEach(element => {
+                    var elem = this.props.callback(element)
+                    this.chart.data.labels.push(elem.time)
+                    this.chart.data.datasets[0].data.push(elem.value)
+                })
+
+                var lastTime = moment.unix(data[data.length - 1].ventdata.time)
+                var minTime = moment(lastTime).subtract(this.props.window, 's')
+                this.chart.options.scales.xAxes[0].ticks.min = minTime
+                this.chart.options.scales.xAxes[0].ticks.max = lastTime
+            }
+
+            this.chart.update(0)
+            this.currentVent = this.props.activeVentilator
+        }
+    }
 
     componentWillUnmount() {
         window.removeEventListener('resize', this.updateSizes);

@@ -41,7 +41,7 @@ export default class VentilatorList extends React.Component {
         return(
             <div>
                 <div>
-                    <GraphView socket = {this.props.socket} />
+                    <GraphView socket={this.props.socket} activeVentilator={this.props.activeVentilator} />
                 </div>
 
                 <div className="side-info">

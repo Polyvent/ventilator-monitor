@@ -23,11 +23,11 @@ class App extends React.Component {
         //Temporary
         this.ventilators = [{
             name: "Ventilator 1",
-            id: 0,
+            id: 4242,
             status: "okay"
         }, {
             name: "Ventilator 2",
-            id: 1,
+            id: 3089,
             status: "alarm"
         }]
 
@@ -65,7 +65,7 @@ class App extends React.Component {
         return (
             <div>
                 <VentilatorList ventilators = {this.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
-                <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} socket = {socket} />
+                <VentilatorView ventilators = {this.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} />
                 <BottomButtonList />
             </div>
         );
