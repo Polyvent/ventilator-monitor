@@ -9,7 +9,7 @@ export default class VentilatorInfo extends React.Component {
         return(
             <div className="ventilator-info">
                 <p className="info-name">{this.props.name} <span className="info-unit">{getUnit(this.props.name)}</span></p>
-                <p className="info-value">{this.props.value}</p>
+                <p className="info-value">{this.props.value.toFixed(0)}</p>
             </div>
         )
     }
