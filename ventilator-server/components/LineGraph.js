@@ -38,7 +38,9 @@ export default class LineGraph extends Component {
                 labels: this.props.labels,
                 datasets: [{
                     label: this.props.label,
-                    data: this.props.data
+                    data: this.props.data,
+                    borderColor:'rgba(5, 226, 237, 0.8)',
+                    backgroundColor: 'rgba(5, 226, 237, 0.1)',
                 }]
             },
             options: {
@@ -69,7 +71,14 @@ export default class LineGraph extends Component {
                             suggestedMin: this.props.ymin,
                             suggestedMax: this.props.ymax,
                             callback: (value, index, values) => {
-                                return (Math.abs(value) > 1000) ? (value/1000) + 'k' : value;
+                                if (Math.abs(value) > 1000) {
+                                    value = (value/1000) + 'k';
+                                } else if (Math.abs(value) < 10) {
+                                    value = '       ' + value;
+                                } else if (Math.abs(value) < 100) {
+                                    value = ' ' + value;
+                                }
+                                return value;
                             }
                         }
                     }]

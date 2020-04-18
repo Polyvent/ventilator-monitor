@@ -108,7 +108,7 @@ export default class VentilatorList extends React.Component {
                 </div>
 
                 <div className="side-info">
-                    <SideCategory data={this.state.data.triggerSettings} name="Trigger Settings"/>
+                    <SideCategory data={this.state.data.triggerSettings} name="Ventialtor Settings"/>
                     <SideCategory data={this.state.data.vitalsigns} name="Vital Signs"/>
                 </div>
 

@@ -20,7 +20,7 @@ export default class BottomButtonList extends React.Component {
                 <ul>
                     <li onClick={() => this.props.toggleFreeze()} className={frozenClass}><div className="freeze-button">FREEZE</div></li>
                     <li onClick={() => this.props.toggleSettings()}><div className="settings-button">{cogwheel}</div></li>
-                    <li><div className="alert-button">{warning}</div></li>
+                    <li><div className="alert-button freeze-button">STOP ALERT</div></li>
                 </ul>
             </div>
         )
