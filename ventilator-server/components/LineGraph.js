@@ -15,7 +15,7 @@ export default class LineGraph extends Component {
     }
 
     updateSizes() {
-        this.chart.canvas.parentNode.style.height = ((window.innerHeight * 0.5) - 80) + 'px';
+        this.chart.canvas.parentNode.style.height = ((window.innerHeight * 0.35) - 80) + 'px';
         this.chart.canvas.parentNode.style.width = (window.innerWidth - 220) + 'px';
     }
 
