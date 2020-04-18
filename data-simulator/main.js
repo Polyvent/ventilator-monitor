@@ -21,6 +21,11 @@ const io = require('socket.io-client');
 const ioClient = io.connect(settings.serverURL);
 const fetch = require('node-fetch');
 
+const https = require('https');
+const agent = new https.Agent({
+  keepAlive: true
+});
+
 var emitIntervalHandle      = null;
 var adjustIntervalHandle    = null;
 
@@ -58,16 +63,22 @@ function dataEmit() {
         }
     }
 
-    fetch(settings.dataAPI)
+    fetch(settings.dataAPI, {
+        headers: {
+            'Connection': 'keep-alive'
+        },
+        agent: agent
+    })
     .then(response => response.json())
     .then(ventdata => {
+        console.log(ventdata[ventNum].time)
         data.ventdata = ventdata[ventNum]
         ioClient.emit('data', data);
     })
     .catch(err => console.error(err))    
 }
 
-const ADJ_FACTOR = 0.2
+const ADJ_FACTOR = 1
 
 function vitalSignAdjustment() {
     if (Math.abs(currentSystole - vital.steadyValues.bloodpressure.systole) > vital.deviation.bloodpressure.systole) {

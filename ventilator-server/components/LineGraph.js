@@ -7,6 +7,8 @@ export default class LineGraph extends Component {
     currentVent = null
     ventData = []
 
+    wasFrozen = false
+
     constructor(props) {
         super(props)
 
@@ -101,7 +103,7 @@ export default class LineGraph extends Component {
                 while(moment.unix(myVentData[0].ventdata.time).isBefore(minTime)) myVentData.shift()
             }
 
-            // Only proceed for active ventilator
+            // Only proceed for active ventilator and when not frozen
             if (data.ventdata.device_id !== this.props.activeVentilator)
                 return
 
@@ -120,7 +122,9 @@ export default class LineGraph extends Component {
             this.chart.options.scales.xAxes[0].ticks.min = minTime
             this.chart.options.scales.xAxes[0].ticks.max = elem.time
 
-            this.chart.update()
+            if(!this.props.frozen) {
+                this.chart.update()
+            }
         })
     }
 
@@ -153,6 +157,14 @@ export default class LineGraph extends Component {
             this.chart.update(0)
             this.currentVent = this.props.activeVentilator
         }
+
+        if(this.wasFrozen !== this.props.frozen) {
+            if(!this.props.frozen) {
+                //Update graph
+                this.chart.update()
+            }
+        }
+        this.wasFrozen = this.props.frozen;
     }
 
     componentWillUnmount() {

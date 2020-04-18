@@ -8,38 +8,29 @@ export default class SideCategory extends React.Component {
         super(props)
     }
 
-    componentDidMount() {
-
-    }
-
     render() {
-        if(this.props.data !== undefined) {
-            return(
-                <div class="side-category">
-                    <div>
-                        <ul>
-                            <li className="ventilator-category-li">
-                                <p>{this.props.name.toUpperCase()}</p>
-                            </li>
-                            {Object.entries(this.props.data)
-                                .map(([key, value]) => (
-                                    <li className="ventilator-info-li" key={key}>
-                                        <VentilatorInfo name={key} value={value}/>
-                                    </li>
-                            ))}
-                        </ul>
-                    </div>
-                </div>
-            );
-        } else {
-            return(
+        console.log(`Data: ` + JSON.stringify(this.props.data))
+        return(
+            <div className="side-category">
                 <div>
-                    <div>
-                        <ul></ul>
-                    </div>
+                    <ul>
+                        <li className="ventilator-category-li">
+                            <p>{this.props.name.toUpperCase()}</p>
+                        </li>
+                        
+                        {this.props.data.offline ? (
+                            <li className="ventilator-info-li">
+                                <p className="offline-right">OFFLINE</p>
+                            </li>
+                        ) : Object.entries(this.props.data)
+                            .map(([key, value]) => (
+                                <li className="ventilator-info-li" key={key}>
+                                    <VentilatorInfo name={key} value={value}/>
+                                </li>
+                        ))}
+                    </ul>
                 </div>
-            )
-        }
+            </div>
+        );
     }
-
 }

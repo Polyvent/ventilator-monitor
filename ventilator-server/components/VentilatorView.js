@@ -7,8 +7,14 @@ import SideCategory from './SideCategory';
 
 export default class VentilatorList extends React.Component {
     state = {
-        data: {}
+        data: {
+            triggerSettings: {},
+            vitalsigns: {}
+        }
     }
+
+    currentVent = -1
+    sideData = []
 
     constructor(props) {
         super(props)
@@ -23,7 +29,7 @@ export default class VentilatorList extends React.Component {
                 MVe: data.ventdata.processed.triggerSettings.MVe,
                 RR: data.ventdata.processed.triggerSettings.RR,
                 RH: data.ventdata.processed.triggerSettings.humidity,
-                Press: data.ventdata.processed.triggerSettings.pressure_max,
+                P: data.ventdata.processed.triggerSettings.pressure_max,
             },
             vitalsigns: {
                 SBP: data.vitalsigns.bloodpressure.systole,
@@ -37,7 +43,20 @@ export default class VentilatorList extends React.Component {
 
     componentDidMount() {
         this.props.socket.on('data', (data) => {
-            // Ignore data for non-active ventilators
+            // Store data from any ventilator
+            var index = this.sideData.findIndex(d => d.device_id === data.ventdata.device_id)
+            if (index === -1) {
+                // New ventilator
+                this.sideData.push({
+                    device_id: data.ventdata.device_id,
+                    data: data
+                })
+            } else {
+                // Existing ventilator - set new data
+                this.sideData[index].data = data
+            }
+
+            // Don't display data from non-active ventilators
             if (data.ventdata.device_id !== this.props.activeVentilator)
                 return
 
@@ -45,11 +64,37 @@ export default class VentilatorList extends React.Component {
         })
     }
 
+    componentDidUpdate() {
+        if (this.props.activeVentilator !== this.currentVent) {
+            console.log(`Ventilator changed to ${this.props.activeVentilator}`)
+            // Ventilator changed - clear sidebar
+            this.setState({
+                data: {
+                    triggerSettings: { offline: 1 },
+                    vitalsigns: { offline: 1 }
+                }
+            })
+
+            // If no ventilator is active or ventilator is offline, leave sidebar empt y
+            if (this.props.activeVentilator == -1)
+                return
+
+            // Load data from new ventilator
+            var index = this.sideData.findIndex(d => d.device_id === this.props.activeVentilator)
+            if (index !== -1) {
+                var data = this.sideData[index].data
+                this.setState({data: this.showSide(data)})
+            }
+
+            this.currentVent = this.props.activeVentilator
+        }
+    }
+
     render() {
         return(
             <div>
                 <div>
-                    <GraphView socket={this.props.socket} activeVentilator={this.props.activeVentilator} />
+                    <GraphView socket={this.props.socket} activeVentilator={this.props.activeVentilator} frozen={this.props.frozen}/>
                 </div>
 
                 <div className="side-info">

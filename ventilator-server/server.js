@@ -23,7 +23,7 @@ function updateClientVentilators() {
             return {
                 name: v.firstName + ' ' + v.lastName,
                 id: v.deviceID,
-                status: online ? "okay" : "offline"
+                status: online ? "online" : "offline"
             }
         }))
     })
