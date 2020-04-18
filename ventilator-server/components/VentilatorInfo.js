@@ -33,7 +33,7 @@ export default class VentilatorInfo extends React.Component {
                 unit = "L/min"
                 value = this.props.value.toFixed(0);
                 break;
-            case "press":
+            case "p":
                 unit = "mbar"
                 value = this.props.value.toFixed(0);
                 break;
