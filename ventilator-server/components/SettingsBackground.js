@@ -7,7 +7,7 @@ export default class SettingsBackground extends React.Component {
 
     render() {
         return(
-            <div class="settings-background" onClick={this.props.toggleSettings}>
+            <div className="settings-background" onClick={this.props.toggleSettings}>
             </div>
         );
     }

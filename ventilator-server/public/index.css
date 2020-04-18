@@ -25,48 +25,10 @@
 }
 
 @keyframes easeInElastic {
-	0% {
-		transform: scale(0);
-	}
-
-	25% {
-		transform: scale(0);
-	}
-
-    50% {
-		transform: scale(1.2);
-	}
-
-    60% {
-		transform: scale(1);
-	}
-
-
-	100% {
-		transform: scale(1);
-	}
+    from { transform: scale(0.9); }
+    to   { transform: scale(1); }
+	
 }
-@keyframes easeOutElastic {
-    0% {
-		transform: scale(1);
-	}
-    40% {
-		transform: scale(1);
-	}
-
-	50% {
-		transform: scale(1.2);
-	}
-
-    75% {
-		transform: scale(0);
-	}
-
-    100% {
-		transform: scale(0);
-	}
-}
-
 
 body {
     background-color: #eeeeee;
@@ -89,45 +51,45 @@ body {
 }
 
 @-webkit-keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 @-moz-keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2);}
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 @-o-keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 @keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 
 @-webkit-keyframes glowingRed {
-    0% { background-color: #B20000; }
+    0% { background-color: #393e46; }
     50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
+    100% { background-color: #393e46; }
 }
 @-moz-keyframes glowingRed {
-    0% { background-color: #B20000; }
+    0% { background-color: #393e46; }
     50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
+    100% { background-color: #393e46; }
 }
 @-o-keyframes glowingRed {
-    0% { background-color: #B20000; }
+    0% { background-color: #393e46; }
     50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
+    100% { background-color: #393e46; }
 }
 @keyframes glowingRed {
-    0% { background-color: #B20000; }
+    0% { background-color: #393e46; }
     50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
+    100% { background-color: #393e46; }
 }
 
 .profile-img {
@@ -135,7 +97,7 @@ body {
     height: 50px;
 }
 .svg-online {
-    fill: #4cd363;
+    fill: #05e2ed;
 }
 .svg-alarm {
     fill: #ff5722;
@@ -148,7 +110,7 @@ body {
 }
 
 .text-online {
-    color: #4cd363;
+    color: #05e2ed;
 }
 .text-alarm {
     color: #ff5722;
@@ -363,12 +325,12 @@ body {
     -o-animation: glowingBlue 1500ms infinite;
     animation: glowingBlue 1500ms infinite;
     
-    color: black;
+    /*color: black;*/
 }
-.bottom-buttons .button-frozen:hover, .bottom-buttons .button-frozen:active{
+/*.bottom-buttons .button-frozen:hover, .bottom-buttons .button-frozen:active{
     background-color: #02b8c2;
     color: black;
-}
+}*/
 
 .bottom-buttons .button-alarm-active {
     /*background-color: #05e2ed;*/
@@ -391,7 +353,7 @@ body {
 }
 
 .settings-pop-up {
-    animation: 0.8s ease-in 0s 1 easeInElastic;
+    animation: 0.1s ease-in 0s easeInElastic;
 
     position: fixed;
     top: calc(50% - 400px);

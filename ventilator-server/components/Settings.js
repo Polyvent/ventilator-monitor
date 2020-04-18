@@ -9,6 +9,8 @@ export default class Settings extends React.Component {
 
         this.handleUpdate = this.handleUpdate.bind(this)
         this.handleChange = this.handleChange.bind(this)
+
+        console.log({dataa: this.props.ventilators})
     }
 
     state = {
@@ -36,9 +38,17 @@ export default class Settings extends React.Component {
         })
     }
 
+    componentDidMount() {
+        var index = this.props.ventilators.findIndex(d => d.id === this.props.activeVentilator)
+        this.setState({
+            firstName: this.props.ventilators[index].firstName,
+            lastName: this.props.ventilators[index].lastName
+        })
+    }
 
 
     render() {
+
         return(
             <div>
                 <SettingsBackground toggleSettings={this.props.toggleSettings}/>
@@ -48,7 +58,7 @@ export default class Settings extends React.Component {
 
                     <div className="settings-content">
                         <p className="settings-subtitle">Patient</p>
-                        <div class="patient-name">
+                        <div className="patient-name">
                             <input type="text" id="fname" name="firstName" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange}/>
                             <input type="text" id="lname" name="lastName" placeholder="Last Name" value={this.state.lastName} onChange={this.handleChange}/>
                             <input type="button" value="Update" onClick={this.handleUpdate}/>

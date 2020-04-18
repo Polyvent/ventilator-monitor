@@ -90,7 +90,7 @@ class App extends React.Component {
     }
 
     render() {
-        var showSettings = this.state.showSettings ? <Settings socket={socket} activeVentilator={this.state.activeVentilator} toggleSettings={this.toggleSettings}/> : "";
+        var showSettings = this.state.showSettings ? <Settings socket={socket} activeVentilator={this.state.activeVentilator} ventilators = {this.state.ventilators} toggleSettings={this.toggleSettings} /> : "";
 
         return (
             <div className="app">
