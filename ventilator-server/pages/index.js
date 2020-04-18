@@ -53,7 +53,7 @@ class App extends React.Component {
     }
 
     updateActiveVentilator(ventId) {
-        this.setState({activeVentilator: ventId})
+        this.setState({activeVentilator: ventId, frozen: false})
     }
 
     render() {

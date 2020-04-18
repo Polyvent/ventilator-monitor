@@ -7,8 +7,8 @@ export default class VentillatorStatus extends React.Component {
 
     render() {
         var name = this.props.ventilator.name
-        var status = this.props.frozen ? "frozen" : this.props.ventilator.status
         var isActiveClass = this.props.activeVentilator == this.props.ventilator.id ? "active-vent" : ""
+        var status = this.props.frozen && isActiveClass ? "frozen" : this.props.ventilator.status
 
         if(status !== undefined)
             return(
