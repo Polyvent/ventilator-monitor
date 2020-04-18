@@ -9,10 +9,10 @@ export default class BottomButtonList extends React.Component {
 
     render() {
         return(
-            <div class="bottom-buttons">
+            <div className="bottom-buttons">
                 <ul>
-                    <li><div class="freeze-button">FREEZE</div></li>
-                    <li><div class="settings-button">{cogwheel}</div></li>
+                    <li><div className="freeze-button">FREEZE</div></li>
+                    <li><div className="settings-button">{cogwheel}</div></li>
                 </ul>
             </div>
         )
