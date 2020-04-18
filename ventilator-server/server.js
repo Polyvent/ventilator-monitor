@@ -29,6 +29,27 @@ function updateClientVentilators() {
     })
 }
 
+function processTriggers(data, callback) {
+    var deviceID = data.ventdata.device_id
+    db.getVentilator(deviceID, vent => {
+        // set alarms in emitter connection
+        var emitterConnection = emitterConnections.find(c => c.deviceID == deviceID)
+        if (data.vitalsigns.heartRate < vent.heartRateMin || data.vitalsigns.heartRate > vent.heartRateMax)
+            emitterConnection.alarms.heartRate = true
+        if(data.vitalsigns.bloodpressure.systole < vent.systoleMin || data.vitalsigns.bloodpressure.systole > vent.systoleMax)
+            emitterConnection.alarms.systole = true
+        if(data.vitalsigns.bloodpressure.diastole < vent.diastoleMin || data.vitalsigns.bloodpressure.diastole > vent.diastoleMax)
+            emitterConnection.alarms.diastole = true
+        if (data.vitalsigns.bodyTemperature < vent.bodyTemperatureMin || data.vitalsigns.bodyTemperature > vent.bodyTemperatureMax)
+            emitterConnection.alarms.bodyTemperature = true
+        if (data.vitalsigns.oxygenSaturation < vent.oxygenSaturationMin || data.vitalsigns.oxygenSaturation > vent.oxygenSaturationMax)
+            emitterConnection.alarms.oxygenSaturation = true
+
+        data.alarms = emitterConnection.alarms
+        callback(data)
+    })
+}
+
 nextApp.prepare()
 .then(() => {
     // Default route for react/nextjs
@@ -51,11 +72,9 @@ nextApp.prepare()
         // emitter data in event
         socket.on('data', (data) => {
             if (!emitterConnections.some(conn => conn.socketID === socket.id)) {
-                // New emitter - check if device_id exists in database
+                // New emitter - add device to database if it doesn't exist
                 db.ventilatorExists(data.ventdata.device_id, exists => {
-                    if (exists) {
-                        console.log(`Ventilator ${data.ventdata.device_id} already in database`)
-                    } else {
+                    if (!exists) {
                         console.log(`Adding Ventilator ${data.ventdata.device_id} to database`)
                         db.addVentilator({"deviceID": data.ventdata.device_id, "firstName": "Ventilator", "lastName": String(data.ventdata.device_id)}, () => {
                             updateClientVentilators()
@@ -69,7 +88,7 @@ nextApp.prepare()
                     socket.disconnect()
                     return
                 }
-                emitterConnections.push({socketID: socket.id, deviceID: data.ventdata.device_id})
+                emitterConnections.push({socketID: socket.id, deviceID: data.ventdata.device_id, alarms: {}})
                 console.log(`Emitter ${socket.id} registered as device ${data.ventdata.device_id}`)
                 updateClientVentilators()
             } else {
@@ -80,11 +99,14 @@ nextApp.prepare()
                     socket.disconnect()
                     return
                 }
+
+                // Process triggers/alarms
+                processTriggers(data, dataWithAlarms => {
+                    clients.emit('data', dataWithAlarms)
+                })
             }
 
             db.insert(data)
-
-            clients.emit('data', data)
         })
     })
 
@@ -96,16 +118,7 @@ nextApp.prepare()
             console.log(`Client with id ${socket.id} disconnected`)
         })
 
-        // update min/max for vital signs
-        socket.on('alarmvalue', (vital, min, max) => {
-            var index = emitterConnections.findIndex(conn => conn.socketID === socket.id)
-            if(index != -1) {
-                db.updateLimit(emitterConnections[index].deviceID, vital, min, max)
-                emitterConnections[index].limits[vital].min = min
-                emitterConnections[index].limits[vital].max = max
-            }
-        })
-
+        // update ventilator settings and/or limits
         socket.on('config', (config) => {
             console.log("Config event for device " + config.device_id)
             console.log(config)
@@ -121,6 +134,11 @@ nextApp.prepare()
                     db.updateLimit(config.device_id, l.vital, l.min, l.max, () => {})
                 })
             }
+        })
+
+        // clear alarms
+        socket.on('clearalarms', deviceID => {
+            emitterConnections.find(c => c.deviceID === deviceID).alarms = {}
         })
 
         // Send ventilators list to client

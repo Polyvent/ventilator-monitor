@@ -98,6 +98,12 @@ exports.getVentilators = (callback) => {
     })
 }
 
+exports.getVentilator = (deviceID, callback) => {
+    db.get("SELECT * FROM ventilators WHERE deviceID=?", deviceID, (err, row) => {
+        callback(row)
+    })
+}
+
 exports.ventilatorExists = (deviceID, callback) => {
     db.all("SELECT * FROM dataset WHERE deviceID = ?", [deviceID], (err, rows) => {
         callback(rows.length > 0)

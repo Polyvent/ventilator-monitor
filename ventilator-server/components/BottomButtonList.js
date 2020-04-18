@@ -11,6 +11,11 @@ const warning = (
 export default class BottomButtonList extends React.Component {
     constructor(props) {
         super(props)
+        this.handleAlertButton = this.handleAlertButton.bind(this)
+    }
+
+    handleAlertButton() {
+        this.props.socket.emit('clearalarms', this.props.activeVentilator)
     }
 
     render() {
@@ -20,7 +25,7 @@ export default class BottomButtonList extends React.Component {
                 <ul>
                     <li onClick={() => this.props.toggleFreeze()} className={frozenClass}><div className="freeze-button">FREEZE</div></li>
                     <li onClick={() => this.props.toggleSettings()}><div className="settings-button">{cogwheel}</div></li>
-                    <li><div className="alert-button">{warning}</div></li>
+                    <li><div className="alert-button" onClick={this.handleAlertButton}>{warning}</div></li>
                 </ul>
             </div>
         )

@@ -212,6 +212,9 @@ body {
     height: 50px;
     padding-top: 5px;
 }
+.ventilator-info-alarm {
+    background-color: #FF3F37;
+}
 .ventilator-category-li {
     border-bottom: 1px solid #60656A;
     background-color: #222831;

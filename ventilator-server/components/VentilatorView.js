@@ -24,20 +24,46 @@ export default class VentilatorList extends React.Component {
     showSide(data) {
         return {
             triggerSettings: {
-                VT: data.ventdata.processed.triggerSettings.VT,
-                PEEP: data.ventdata.processed.triggerSettings.PEEP,
-                FiO2: data.ventdata.processed.triggerSettings.FiO2,
-                MVe: data.ventdata.processed.triggerSettings.MVe,
-                RR: data.ventdata.processed.triggerSettings.RR,
-                RH: data.ventdata.processed.triggerSettings.humidity,
-                P: data.ventdata.processed.triggerSettings.pressure_max,
+                VT: {
+                    value: data.ventdata.processed.triggerSettings.VT,
+                    alarm: false
+                }, PEEP: {
+                    value: data.ventdata.processed.triggerSettings.PEEP,
+                    alarm: false
+                }, FiO2: {
+                    value: data.ventdata.processed.triggerSettings.FiO2,
+                    alarm: false
+                }, MVe: {
+                    value: data.ventdata.processed.triggerSettings.MVe,
+                    alarm: false
+                }, RR: {
+                    value: data.ventdata.processed.triggerSettings.RR,
+                    alarm: false
+                }, RH: {
+                    value: data.ventdata.processed.triggerSettings.humidity,
+                    alarm: false
+                }, P: {
+                    value: data.ventdata.processed.triggerSettings.pressure_max,
+                    alarm: false
+                }
             },
             vitalsigns: {
-                SBP: data.vitalsigns.bloodpressure.systole,
-                DBP: data.vitalsigns.bloodpressure.diastole,
-                Temp: data.vitalsigns.bodyTemperature,
-                Pulse: data.vitalsigns.heartRate,
-                SaO2: data.vitalsigns.oxygenSaturation
+                SBP: {
+                    value: data.vitalsigns.bloodpressure.systole,
+                    alarm: data.alarms.systole
+                }, DBP: {
+                    value: data.vitalsigns.bloodpressure.diastole,
+                    alarm: data.alarms.diastole
+                }, Temp: {
+                    value: data.vitalsigns.bodyTemperature,
+                    alarm: data.alarms.bodyTemperature
+                }, Pulse: {
+                    value: data.vitalsigns.heartRate,
+                    alarm: data.alarms.heartRate
+                }, SaO2: {
+                    value: data.vitalsigns.oxygenSaturation,
+                    alarm: data.alarms.oxygenSaturation
+                }
             }
         }
     }
