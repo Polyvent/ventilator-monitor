@@ -71,50 +71,37 @@ function dataEmit() {
     .catch(err => console.error(err))    
 }
 
+const ADJ_FACTOR = 0.2
+
 function vitalSignAdjustment() {
-    if (currentSystole < vital.steadyValues.bloodpressure.systole - vital.deviation.bloodpressure.systole ||
-        currentSystole > vital.steadyValues.bloodpressure.systole + vital.deviation.bloodpressure.systole) {
-            if (currentSystole > vital.steadyValues.bloodpressure.systole) {
-                currentSystole = currentSystole - (vital.deviation.bloodpressure.systole / 2);
-            } else {
-                currentSystole = currentSystole + (vital.deviation.bloodpressure.systole / 2);
-            }
+    if (Math.abs(currentSystole - vital.steadyValues.bloodpressure.systole) > vital.deviation.bloodpressure.systole) {
+        currentSystole -= Math.sign(currentSystole - vital.steadyValues.bloodpressure.systole) * vital.deviation.bloodpressure.systole * ADJ_FACTOR
+    } else {
+        currentSystole = vital.steadyValues.bloodpressure.systole
     }
 
-    if (currentDiastole < vital.steadyValues.bloodpressure.diastole - vital.deviation.bloodpressure.diastole ||
-        currentDiastole > vital.steadyValues.bloodpressure.diastole + vital.deviation.bloodpressure.diastole) {
-            if (currentDiastole > vital.steadyValues.bloodpressure.diastole) {
-                currentDiastole = currentDiastole - (vital.deviation.bloodpressure.diastole / 2);
-            } else {
-                currentDiastole = currentDiastole + (vital.deviation.bloodpressure.diastole / 2);
-            }
-    }
-    
-    if (currentBodyTemperature < vital.steadyValues.bodyTemperature - vital.deviation.bodyTemperature ||
-        currentBodyTemperature > vital.steadyValues.bodyTemperature + vital.deviation.bodyTemperature) {
-            if (currentBodyTemperature > vital.steadyValues.bodyTemperature) {
-                currentBodyTemperature = currentBodyTemperature - (vital.deviation.bodyTemperature / 2);
-            } else {
-                currentBodyTemperature = currentBodyTemperature + (vital.deviation.bodyTemperature / 2);
-            }
+    if (Math.abs(currentDiastole - vital.steadyValues.bloodpressure.diastole) > vital.deviation.bloodpressure.diastole) {
+        currentDiastole -= Math.sign(currentDiastole - vital.steadyValues.bloodpressure.diastole) * vital.deviation.bloodpressure.diastole * ADJ_FACTOR
+    } else {
+        currentDiastole = vital.steadyValues.bloodpressure.diastole
     }
 
-    if (currentHeartRate < vital.steadyValues.heartRate - vital.deviation.heartRate ||
-        currentHeartRate > vital.steadyValues.heartRate + vital.deviation.heartRate) {
-            if (currentHeartRate > vital.steadyValues.heartRate) {
-                currentHeartRate = currentHeartRate - (vital.deviation.heartRate / 2);
-            } else {
-                currentHeartRate = currentHeartRate + (vital.deviation.heartRate / 2);
-            }
+    if (Math.abs(currentBodyTemperature - vital.steadyValues.bodyTemperature) > vital.deviation.bodyTemperature) {
+        currentBodyTemperature -= Math.sign(currentBodyTemperature - vital.steadyValues.bodyTemperature) * vital.deviation.bodyTemperature * ADJ_FACTOR
+    } else {
+        currentBodyTemperature = vital.steadyValues.bodyTemperature
     }
 
-    if (currentOxygenSaturation < vital.steadyValues.oxygenSaturation - vital.deviation.oxygenSaturation ||
-        currentOxygenSaturation > vital.steadyValues.oxygenSaturation + vital.deviation.oxygenSaturation) {
-            if (currentOxygenSaturation > vital.steadyValues.oxygenSaturation) {
-                currentOxygenSaturation = currentOxygenSaturation - (vital.deviation.oxygenSaturation / 2);
-            } else {
-                currentOxygenSaturation = currentOxygenSaturation + (vital.deviation.oxygenSaturation / 2);
-            }
+    if (Math.abs(currentHeartRate - vital.steadyValues.heartRate) > vital.deviation.heartRate) {
+        currentHeartRate -= Math.sign(currentHeartRate - vital.steadyValues.heartRate) * vital.deviation.heartRate * ADJ_FACTOR
+    } else {
+        currentHeartRate = vital.steadyValues.heartRate
+    }
+
+    if (Math.abs(currentOxygenSaturation - vital.steadyValues.oxygenSaturation) > vital.deviation.oxygenSaturation) {
+        currentOxygenSaturation -= Math.sign(currentOxygenSaturation - vital.steadyValues.oxygenSaturation) * vital.deviation.oxygenSaturation * ADJ_FACTOR
+    } else {
+        currentOxygenSaturation = vital.steadyValues.oxygenSaturation
     }
 }
 
