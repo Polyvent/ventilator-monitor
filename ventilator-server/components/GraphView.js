@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import LineGraph from './LineGraph'
 
 export default class GraphView extends React.Component {
     constructor(props) {
@@ -7,7 +8,10 @@ export default class GraphView extends React.Component {
 
     render() {
         return(
-            <div>GraphView</div>
+            <div className="graphContainer">
+                <LineGraph socket={this.props.socket}/>
+                <LineGraph socket={this.props.socket}/>
+            </div>
         );
     }
 

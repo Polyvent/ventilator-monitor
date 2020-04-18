@@ -132,3 +132,60 @@ body {
     border-bottom: 1px solid #60656A;
     height: 60px;
 }
+
+
+
+
+
+.bottom-buttons {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+.bottom-buttons ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px;
+
+}
+.bottom-buttons li {
+    display: inline-block;
+    color: white;
+    background-color: #393e46;
+    padding: 10px;
+    margin-right: 10px;
+    vertical-align: bottom;
+    border-radius: 20px;
+
+    box-shadow: -10px 5px 10px rgb(100, 100, 100, 0.5);
+}
+.freeze-button {
+    position: relative;
+    top: 5px;
+    height: 30px;
+}
+.settings-button {
+    position: relative;
+    top: 2px;
+    left: 2px;
+    width: 30px;
+    transform-origin: 13px 13px;
+    transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);;
+    transform: rotate(0deg);
+}
+
+.bottom-buttons li:hover {
+    transition: 0.3s;
+    cursor: pointer;
+    background-color: #222831;
+    box-shadow: -10px 5px 10px rgb(100, 100, 100, 0.9);
+}
+.bottom-buttons li:hover .freeze-button {
+    transition: 0.5s;
+    color: #05e2ed;
+}
+
+.bottom-buttons li:hover .settings-button {
+    transition: 1s cubic-bezier(0.65, 0, 0.35, 1);;
+    transform: rotate(180deg);
+}

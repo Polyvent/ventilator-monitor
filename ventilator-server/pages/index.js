@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import Header           from '../components/Header'
 import VentilatorList   from '../components/VentilatorList'
 import VentilatorView   from '../components/VentilatorView'
+import BottomButtonList    from '../components/BottomButtonList'
 
 import io from 'socket.io-client'
 const socket = io('/realtime')
@@ -57,16 +58,15 @@ class App extends React.Component {
     }
 
     updateActiveVentilator(ventId) {
-        console.log(ventId);
         this.setState({activeVentilator: ventId})
-        // this.activeVentilator = ventId
     }
 
     render() {
         return (
             <div>
                 <VentilatorList ventilators = {this.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
-                <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} />
+                <VentilatorView ventilators = {this.ventilators} ventilatorData = {this.ventilatorData} socket = {socket} />
+                <BottomButtonList />
             </div>
         );
     }
