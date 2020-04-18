@@ -6,7 +6,22 @@ var db = new sqlite.Database('database.db');
 exports.initialize = (callback) => {
     db.serialize(function() {
         console.log('Setting up database...')
-        db.run("CREATE TABLE if not exists ventilators (deviceID int, firstName varchar(100), lastName varchar(100))")
+        db.run(
+            `CREATE TABLE if not exists ventilators 
+               (deviceID int, 
+                firstName varchar(100), 
+                lastName varchar(100),
+                systoleMin int,
+                systoleMax int,
+                diastoleMin int,
+                diastoleMax int,
+                bodyTemperatureMin float,
+                bodyTemperatureMax float,
+                heartRateMin int,
+                heartRateMax int,
+                oxygenSaturationMin int,
+                oxygenSaturationMax int)`)
+
         db.run(
             `CREATE TABLE if not exists dataset
                (deviceID int,
@@ -38,7 +53,7 @@ exports.initialize = (callback) => {
                 temperature2 int,
                 bloodPressureSystole int,
                 bloodPressureDiastole int,
-                bodyTemperature int,
+                bodyTemperature float,
                 heartRate int,
                 oxygenSaturation int,
                 time bigint)`
@@ -62,7 +77,7 @@ exports.addVentilator = (ventilator, callback) => {
             })
         } else {
             db.serialize(() => {
-                var stmt = db.prepare("INSERT INTO ventilators VALUES (?,?,?)")
+                var stmt = db.prepare("INSERT INTO ventilators VALUES (?,?,?,90,140,60,90,35.5,37.5,60,130,90,101)")
                 stmt.run(
                     ventilator.deviceID,
                     ventilator.firstName,
@@ -84,6 +99,16 @@ exports.getVentilators = (callback) => {
 exports.ventilatorExists = (deviceID, callback) => {
     db.all("SELECT * FROM dataset WHERE deviceID = ?", [deviceID], (err, rows) => {
         callback(rows.length > 0)
+    })
+}
+
+exports.updateLimit = (deviceID, vital, min, max) => {
+    var s1 = vital + "Min"
+    var s2 = vital + "Max"
+    db.serialize(function () {
+        var stmt = db.prepare("UPDATE ventilators SET ? = ? AND ? = ? WHERE deviceID = ?")
+        stmt.run(s1,min,s2,max,deviceID)
+        stmt.finalize()
     })
 }
 
