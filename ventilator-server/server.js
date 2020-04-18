@@ -42,7 +42,11 @@ nextApp.prepare()
                         console.log(`Ventilator ${data.ventdata.device_id} already in database`)
                     } else {
                         console.log(`Adding Ventilator ${data.ventdata.device_id} to database`)
-                        db.addVentilator({"deviceID": data.ventdata.device_id, "firstName": "Ventilator", "lastName": String(data.ventdata.device_id)})
+                        db.addVentilator({"deviceID": data.ventdata.device_id, "firstName": "Ventilator", "lastName": String(data.ventdata.device_id)}, () => {
+                            db.getVentilators(vents => {
+                                clients.emit('ventilators', vents)
+                            })
+                        })
                     }
                 })
 

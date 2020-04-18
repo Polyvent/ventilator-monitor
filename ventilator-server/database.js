@@ -47,7 +47,7 @@ exports.initialize = (callback) => {
     })
 }
 
-exports.addVentilator = (ventilator) => {
+exports.addVentilator = (ventilator, callback) => {
     exports.ventilatorExists(ventilator.deviceID, (exists) => {
         if (exists) {
             db.serialize(() => {
@@ -56,7 +56,9 @@ exports.addVentilator = (ventilator) => {
                     ventilator.firstName,
                     ventilator.lastName,
                     ventilator.deviceID)
-                stmt.finalize()
+                stmt.finalize(err => {
+                    callback()
+                })
             })
         } else {
             db.serialize(() => {
@@ -65,7 +67,9 @@ exports.addVentilator = (ventilator) => {
                     ventilator.deviceID,
                     ventilator.firstName,
                     ventilator.lastName)
-                stmt.finalize()
+                stmt.finalize(err => {
+                    callback()
+                })
             })
         }
     })
