@@ -14,6 +14,7 @@ export default class VentilatorList extends React.Component {
     }
 
     currentVent = -1
+    currentStatus = ''
     sideData = []
 
     constructor(props) {
@@ -65,7 +66,14 @@ export default class VentilatorList extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.props.activeVentilator !== this.currentVent) {
+        var vent = this.props.ventilators.find(v => v.id === this.props.activeVentilator)
+        var statusChanged = false
+        if (vent !== undefined && vent.status !== this.currentStatus) {
+            statusChanged = true
+            this.currentStatus = vent.status
+        }
+
+        if (this.props.activeVentilator !== this.currentVent || statusChanged) {
             console.log(`Ventilator changed to ${this.props.activeVentilator}`)
             // Ventilator changed - clear sidebar
             this.setState({
@@ -75,9 +83,11 @@ export default class VentilatorList extends React.Component {
                 }
             })
 
-            // If no ventilator is active or ventilator is offline, leave sidebar empt y
-            if (this.props.activeVentilator == -1)
+            // If no ventilator is active or ventilator is offline, leave sidebar empty
+            if (this.props.activeVentilator == -1 || vent.status === 'offline') {
+                this.currentVent = this.props.activeVentilator
                 return
+            }
 
             // Load data from new ventilator
             var index = this.sideData.findIndex(d => d.device_id === this.props.activeVentilator)

@@ -135,8 +135,10 @@ export default class LineGraph extends Component {
             this.chart.data.labels = []
             this.chart.data.datasets[0].data = []
             // If no ventilator is active, leave graph empty
-            if (this.props.activeVentilator == -1)
+            if (this.props.activeVentilator == -1) {
+                this.currentVent = this.props.activeVentilator
                 return
+            }
 
             // Load data from new ventilator
             var index = this.ventData.findIndex(d => d.device_id === this.props.activeVentilator)
