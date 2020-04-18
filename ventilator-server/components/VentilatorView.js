@@ -23,7 +23,7 @@ export default class VentilatorList extends React.Component {
                 MVe: data.ventdata.processed.triggerSettings.MVe,
                 RR: data.ventdata.processed.triggerSettings.RR,
                 RH: data.ventdata.processed.triggerSettings.humidity,
-                Press: data.ventdata.processed.triggerSettings.pressure_max,
+                P: data.ventdata.processed.triggerSettings.pressure_max,
             },
             vitalsigns: {
                 SBP: data.vitalsigns.bloodpressure.systole,
