@@ -120,7 +120,7 @@ body {
 }
 .info-value {
     float: right;
-    font-size: 50px;
+    font-size: 40px;
     color: #05e2ed;
     margin: 0;
     padding-right: 10px;
@@ -130,7 +130,8 @@ body {
 }
 .ventilator-info {
     border-bottom: 1px solid #60656A;
-    height: 60px;
+    height: 55px;
+    padding-top: 5px;
 }
 
 

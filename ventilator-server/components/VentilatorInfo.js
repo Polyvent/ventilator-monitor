@@ -19,9 +19,29 @@ export default class VentilatorInfo extends React.Component {
 function getUnit(name) {
     switch (name.toLowerCase()) {
         case "peep":
-            return "cmH2O"
+            return "mbar"
         case "fio2":
             return "Vol%"
+        case "rh":
+            return "%"
+        case "rr":
+            return "/min"
+        case "vt":
+            return "mL"
+        case "mve":
+            return "L/min"
+        case "press":
+            return "mbar"
+        case "sbp": 
+            return "mmHg"
+        case "dbp": 
+            return "mmHg"
+        case "temp": 
+            return "°C"
+        case "pulse": 
+            return "BPM"
+        case "sao2": 
+            return "%" 
         default:
             return ""
 
