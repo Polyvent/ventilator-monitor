@@ -92,7 +92,7 @@ export default class LineGraph extends Component {
                 while(moment.unix(myVentData[0].ventdata.time).isBefore(minTime)) myVentData.shift()
             }
 
-            // Only proceed for active ventilators
+            // Only proceed for active ventilator
             if (data.ventdata.device_id !== this.props.activeVentilator)
                 return
 
@@ -120,6 +120,10 @@ export default class LineGraph extends Component {
             // Ventilator changed - clear graph
             this.chart.data.labels = []
             this.chart.data.datasets[0].data = []
+
+            // If no ventilator is active, leave graph empty
+            if (this.props.activeVentilator == -1)
+                return
 
             // Load data from new ventilator
             var index = this.ventData.findIndex(d => d.device_id === this.props.activeVentilator)

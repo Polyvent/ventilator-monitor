@@ -23,7 +23,7 @@ class App extends React.Component {
         //Temporary
         this.state =  {
             ventilators : [],
-            activeVentilator: 0
+            activeVentilator: -1
         }
 
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
@@ -41,7 +41,7 @@ class App extends React.Component {
                 })
             })
 
-            this.updateActiveVentilator(this.state.ventilators[0].id)
+            this.updateActiveVentilator(this.state.ventilators.length > 0 ? this.state.ventilators[0].id : -1)
         })
     }
 
