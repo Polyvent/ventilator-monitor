@@ -46,7 +46,8 @@ export default class LineGraph extends Component {
                     labels: {
                         boxWidth: 0,
                         fontSize: 18
-                    }
+                    },
+                    onClick: null
                 },
                 scales: {
                     xAxes: [{
@@ -73,10 +74,7 @@ export default class LineGraph extends Component {
                         }
                     }]
                 },
-                maintainAspectRatio: false,
-                legend: {
-                    onClick: null
-                }
+                maintainAspectRatio: false
             }
         })
 
