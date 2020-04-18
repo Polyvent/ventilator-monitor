@@ -64,7 +64,7 @@ export default class VentilatorInfo extends React.Component {
         }
 
         return(
-            <div className="ventilator-info">
+            <div className={this.props.alarm ? "ventilator-info ventilator-info-alarm" : "ventilator-info"}>
                 <p className="info-name">{this.props.name} <span className="info-unit">{unit}</span></p>
                 <p className="info-value">{value}</p>
             </div>

@@ -73,7 +73,7 @@ class App extends React.Component {
                 <div>
                     <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} frozen={this.state.frozen}/>
                     <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} frozen={this.state.frozen}/>
-                    <BottomButtonList toggleFreeze={this.toggleFreeze} toggleSettings={this.toggleSettings} frozen={this.state.frozen}/>
+                    <BottomButtonList socket={socket} activeVentilator={this.state.activeVentilator} toggleFreeze={this.toggleFreeze} toggleSettings={this.toggleSettings} frozen={this.state.frozen}/>
                     {showSettings}
                 </div>
             </div>

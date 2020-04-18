@@ -25,7 +25,7 @@ export default class SideCategory extends React.Component {
                         ) : Object.entries(this.props.data)
                             .map(([key, value]) => (
                                 <li className="ventilator-info-li" key={key}>
-                                    <VentilatorInfo name={key} value={value}/>
+                                    <VentilatorInfo name={key} value={value.value} alarm={value.alarm}/>
                                 </li>
                         ))}
                     </ul>

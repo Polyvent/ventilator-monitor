@@ -82,6 +82,52 @@ body {
     height: 80px;
     background-color: #393e46;
     color: white;
+
+    -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+}
+
+@-webkit-keyframes glowingBlue {
+    0% { background-color: rgba(5, 226, 237, 0.2); }
+    50% { background-color: rgba(5, 226, 237, 1);  }
+    100% { background-color: rgba(5, 226, 237, 0.2); }
+}
+@-moz-keyframes glowingBlue {
+    0% { background-color: rgba(5, 226, 237, 0.2); }
+    50% { background-color: rgba(5, 226, 237, 1);  }
+    100% { background-color: rgba(5, 226, 237, 0.2);}
+}
+@-o-keyframes glowingBlue {
+    0% { background-color: rgba(5, 226, 237, 0.2); }
+    50% { background-color: rgba(5, 226, 237, 1);  }
+    100% { background-color: rgba(5, 226, 237, 0.2); }
+}
+@keyframes glowingBlue {
+    0% { background-color: rgba(5, 226, 237, 0.2); }
+    50% { background-color: rgba(5, 226, 237, 1);  }
+    100% { background-color: rgba(5, 226, 237, 0.2); }
+}
+
+@-webkit-keyframes glowingRed {
+    0% { background-color: #B20000; }
+    50% { background-color: #FF0000; }
+    100% { background-color: #B20000; }
+}
+@-moz-keyframes glowingRed {
+    0% { background-color: #B20000; }
+    50% { background-color: #FF0000; }
+    100% { background-color: #B20000; }
+}
+@-o-keyframes glowingRed {
+    0% { background-color: #B20000; }
+    50% { background-color: #FF0000; }
+    100% { background-color: #B20000; }
+}
+@keyframes glowingRed {
+    0% { background-color: #B20000; }
+    50% { background-color: #FF0000; }
+    100% { background-color: #B20000; }
 }
 
 .profile-img {
@@ -122,7 +168,7 @@ body {
 
 
 .ventilator-status {
-    width: 190px;
+    width: 220px;
     height: 80px;
     padding-right: 25px;
 }
@@ -133,6 +179,10 @@ body {
 }
 .active-vent {
     background-color: #525863;
+
+    -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
 }
 
 .ventilator-list ul {
@@ -170,6 +220,11 @@ body {
     height: calc(100vh - 80px);
     overflow-y: scroll;
     width: 220px;
+
+    -webkit-box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 6px 2px rgba(0,0,0,0.75);
+
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -212,22 +267,33 @@ body {
     height: 50px;
     padding-top: 5px;
 }
+.ventilator-info-alarm {
+    background-color: #FF3F37;
+}
 .ventilator-category-li {
-    border-bottom: 1px solid #60656A;
     background-color: #222831;
     margin: 0;
     padding: 0;
     text-align: center;
+
+    -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
 }
 .ventilator-category-li p {
     margin: 0;
     padding: 0;
     margin-left: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 .side-category:first-child li:first-child {
-    border-top: 1px solid #60656A;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+    -webkit-box-shadow: inset 0px 26px 6px -25px rgba(0,0,0,0.75), 0px 0px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 26px 6px -25px rgba(0,0,0,0.75), 0px 0px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 26px 6px -25px rgba(0,0,0,0.75), 0px 0px 6px 2px rgba(0,0,0,0.75);
 }
 
 
@@ -259,7 +325,9 @@ body {
     vertical-align: bottom;
     border-radius: 20px;
 
-    box-shadow: -5px 2px 8px rgb(100, 100, 100, 0.7);
+    -webkit-box-shadow: -2px 2px 8px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: -2px 2px 8px 2px rgba(0,0,0,0.75);
+    box-shadow: -2px 2px 8px 2px rgba(0,0,0,0.75);
 }
 .freeze-button {
     position: relative;
@@ -280,7 +348,7 @@ body {
     transition: 0.3s;
     cursor: pointer;
     background-color: #222831;
-    box-shadow: -5px 2px 8px rgb(100, 100, 100, 0.9);
+    box-shadow: -2px 2px 8px rgba(0,0,0,0.9);
 }
 
 .bottom-buttons li:hover .settings-button {
@@ -289,7 +357,12 @@ body {
 }
 
 .bottom-buttons .button-frozen {
-    background-color: #05e2ed;
+    /*background-color: #05e2ed;*/
+    -webkit-animation: glowingBlue 1500ms infinite;
+    -moz-animation: glowingBlue 1500ms infinite;
+    -o-animation: glowingBlue 1500ms infinite;
+    animation: glowingBlue 1500ms infinite;
+    
     color: black;
 }
 .bottom-buttons .button-frozen:hover, .bottom-buttons .button-frozen:active{
