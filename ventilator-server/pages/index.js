@@ -21,24 +21,27 @@ class App extends React.Component {
         super(props)
 
         //Temporary
-        this.ventilators = [{
-            name: "Ventilator 1",
-            id: 4242,
-            status: "okay"
-        }, {
-            name: "Ventilator 2",
-            id: 3089,
-            status: "alarm"
-        }]
+        this.state =  {
+            ventilators : [],
+            activeVentilator: 0
+        }
 
-
-        this.state = {activeVentilator: this.ventilators[0].id}
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
     }
 
     componentDidMount() {
         socket.on('ventilators', (data) => {
-            console.log("Ventilators: ", data)
+            this.setState({
+                ventilators: data.map(d => {
+                    return {
+                        name: d.firstName + " " + d.lastName,
+                        id: d.deviceID,
+                        status: "okay"
+                    }
+                })
+            })
+
+            this.updateActiveVentilator(this.state.ventilators[0].id)
         })
     }
 
@@ -49,8 +52,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <VentilatorList ventilators = {this.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
-                <VentilatorView ventilators = {this.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} />
+                <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
+                <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} />
                 <BottomButtonList />
             </div>
         );
