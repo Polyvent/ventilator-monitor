@@ -34,13 +34,14 @@ class App extends React.Component {
     componentDidMount() {
         socket.on('ventilators', (data) => {
             this.setState({
-                ventilators: data.map(d => {
-                    return {
-                        name: d.firstName + " " + d.lastName,
-                        id: d.deviceID,
-                        status: "okay"
-                    }
-                })
+                ventilators: data
+                // ventilators: data.map(d => {
+                //     return {
+                //         name: d.firstName + " " + d.lastName,
+                //         id: d.deviceID,
+                //         status: "okay"
+                //     }
+                // })
             })
 
             this.updateActiveVentilator(this.state.ventilators.length > 0 ? this.state.ventilators[0].id : -1)
@@ -56,11 +57,10 @@ class App extends React.Component {
     }
 
     render() {
-        var frozenClass = this.state.frozen ? "frozen-text" : ""
         return (
-            <div className={"app " + frozenClass}>
+            <div className="app">
                 <div>
-                    <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} />
+                    <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} frozen={this.state.frozen}/>
                     <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} frozen={this.state.frozen}/>
                     <BottomButtonList toggleFreeze={this.toggleFreeze} frozen={this.state.frozen}/>
                 </div>

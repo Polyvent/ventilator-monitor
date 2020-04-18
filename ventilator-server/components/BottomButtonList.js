@@ -8,7 +8,7 @@ export default class BottomButtonList extends React.Component {
     }
 
     render() {
-        var frozenClass = this.props.frozen ? "frozen" : ""
+        var frozenClass = this.props.frozen ? "button-frozen" : ""
         return(
             <div className="bottom-buttons">
                 <ul>
