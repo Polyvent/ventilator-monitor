@@ -17,12 +17,12 @@
         },
         "deviation": {
             "bloodpressure": {
-                "systole": 4,
-                "diastole": 2
+                "systole": 3,
+                "diastole": 1
             },
             "bodyTemperature": 0.1,
-            "heartRate": 3,
-            "oxygenSaturation": 1
+            "heartRate": 0.8,
+            "oxygenSaturation": 0.8
         }
     }
 }
