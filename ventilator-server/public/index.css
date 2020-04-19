@@ -30,102 +30,99 @@
 }
 
 @-webkit-keyframes glowingBlue {
-    0% { background-color: var(--super-dark-gray); }
-    50% { background-color: var(--cyan);  }
-    100% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 @-moz-keyframes glowingBlue {
-    0% { background-color: var(--super-dark-gray); }
-    50% { background-color: var(--cyan);  }
-    100% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 @-o-keyframes glowingBlue {
-    0% { background-color: var(--super-dark-gray); }
-    50% { background-color: var(--cyan);  }
-    100% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 @keyframes glowingBlue {
-    0% { background-color: var(--super-dark-gray); }
-    50% { background-color: var(--cyan);  }
-    100% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
 }
 
 @-webkit-keyframes glowingRedBG {
-    0% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
     50% { background-color: var(--red); }
-    100% { background-color: var(--super-dark-gray); }
+    100% { background-color: #393e46; }
 }
 @-moz-keyframes glowingRedBG {
-    0% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
     50% { background-color: var(--red); }
-    100% { background-color: var(--super-dark-gray); }
+    100% { background-color: #393e46; }
 }
 @-o-keyframes glowingRedBG {
-    0% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
     50% { background-color: var(--red); }
-    100% { background-color: var(--super-dark-gray); }
+    100% { background-color: #393e46; }
 }
 @keyframes glowingRedBG {
-    0% { background-color: var(--super-dark-gray); }
+    0% { background-color: #393e46; }
     50% { background-color: var(--red); }
-    100% { background-color: var(--super-dark-gray); }
+    100% { background-color: #393e46; }
 }
 
 @-webkit-keyframes glowingRedFill {
-    0% { fill: var(--white); }
+    0% { fill: white; }
     50% { fill: var(--red); }
-    100% { fill: var(--white); }
+    100% { fill: white; }
 }
 @-moz-keyframes glowingRedFill {
-    0% { fill: var(--white); }
+    0% { fill: white; }
     50% { fill: var(--red); }
-    100% { fill: var(--white); }
+    100% { fill: white; }
 }
 @-o-keyframes glowingRedFill {
-    0% { fill: var(--white); }
+    0% { fill: white; }
     50% { fill: var(--red); }
-    100% { fill: var(--white); }
+    100% { fill: white; }
 }
 @keyframes glowingRedFill {
-    0% { fill: var(--white); }
+    0% { fill: white; }
     50% { fill: var(--red); }
-    100% { fill: var(--white); }
+    100% { fill: white; }
 }
 
 @-webkit-keyframes glowingRedColor {
-    0% { background-color: var(--white); }
+    0% { background-color: white; }
     50% { background-color: var(--red); }
-    100% { background-color: var(--white); }
+    100% { background-color: white; }
 }
 @-moz-keyframes glowingRedColor {
-    0% { background-color: var(--white); }
+    0% { background-color: white; }
     50% { background-color: var(--red); }
-    100% { background-color: var(--white); }
+    100% { background-color: white; }
 }
 @-o-keyframes glowingRedColor {
-    0% { color: var(--white); }
+    0% { color: white; }
     50% { color: var(--red); }
-    100% { color: var(--white); }
+    100% { color: white; }
 }
 @keyframes glowingRedColor {
-    0% { color: var(--white); }
+    0% { color: white; }
     50% { color: var(--red); }
-    100% { color: var(--white); }
+    100% { color: white; }
 }
 
 :root {
-    --super-dark-gray: #222831;
-    --dark-gray: #393e46;
-    --gray: #525863;
+    --dark-gray: #222831;
+    --gray: #393e46;
     --light-gray: rgb(200, 200, 200);
-    --super-light-gray: #60656A;
     --cyan: #05e2ed;
     --red: #FF3F37;
-    --white: #eeeeee;
 }
 
 body {
-    background-color: var(--white);
+    background-color: #eeeeee;
     color: black;
     font-family: "Roboto";
     margin: 0;
@@ -136,7 +133,7 @@ body {
 }
 .ventilator-list {
     height: 80px;
-    background-color: var(--dark-gray);
+    background-color: #393e46;
     color: white;
 
     -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
@@ -163,34 +160,34 @@ body {
     height: 50px;
 }
 .svg-online {
-    fill: var(--cyan);
+    fill: #05e2ed;
 }
 .svg-alarm {
-    fill: var(--red);
+    fill: #ff5722;
 }
 .svg-offline {
-    fill: var(--light-gray);
+    fill: #afafaf;
 }
 .svg-frozen {
-    fill: var(--cyan);
+    fill: #05e2ed;
 }
 
 .text-online {
-    color: var(--cyan);
+    color: #05e2ed;
 }
 .text-alarm {
-    color: var(--red);
+    color: #ff5722;
 }
 .text-offline {
-    color: var(--light-gray);
+    color: #afafaf;
 }
 .text-frozen {
-    color: var(--cyan);
+    color: #05e2ed;
 }
 
 .offline-right {
     text-align: center;
-    color: var(--light-gray);
+    color: #afafaf;
 }
 
 .ventilator-status {
@@ -201,10 +198,10 @@ body {
 .ventilator-status:hover, .ventilator-status:active {
     cursor: pointer;
     user-select: none;
-    background-color: var(--super-dark-gray);
+    background-color: #222831;
 }
 .active-vent {
-    background-color: var(--gray);
+    background-color: #525863;
 
     -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
@@ -219,7 +216,7 @@ body {
 .ventilator-list li {
     display: inline-block;
     height: 80px;
-    border-right: 1px solid var(--super-light-gray);
+    border-right: 1px solid #60656A;
 }
 .ventilator-status svg {
     margin: 10px;
@@ -276,25 +273,25 @@ body {
 }
 .info-unit {
     font-size: 12px;
-    color: var(--light-gray);
+    color: rgb(200, 200, 200);
 }
 .info-value {
     float: right;
     font-size: 40px;
-    color: var(--cyan);
+    color: #05e2ed;
     margin: 0;
     padding-right: 10px;
 }
 .ventilator-info-li:first-child {
-    border-top: 1px solid var(--dark-gray);
+    border-top: 1px solid #60656A;
 }
 .ventilator-info {
-    border-bottom: 1px solid var(--dark-gray);
+    border-bottom: 1px solid #60656A;
     height: 50px;
     padding-top: 5px;
 }
 .ventilator-category-li {
-    background-color: var(--super-dark-gray);
+    background-color: #222831;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -342,7 +339,7 @@ body {
 .bottom-buttons li {
     display: inline-block;
     color: white;
-    background-color: var(--dark-gray);
+    background-color: #393e46;
     padding: 10px;
     margin-right: 10px;
     vertical-align: bottom;
@@ -370,7 +367,7 @@ body {
 .bottom-buttons li:hover {
     transition: 0.3s;
     cursor: pointer;
-    background-color: var(--super-dark-gray);
+    background-color: #222831;
     box-shadow: -2px 2px 8px rgba(0,0,0,0.9);
 }
 
@@ -412,7 +409,7 @@ body {
     right: calc(50% - 300px);
     height: 90%;
     width: 600px;
-    background-color: var(--white);
+    background-color: #eeeeee;
     border-radius: 29px 29px 25px 25px;
     z-index: 999;
     box-shadow: -5px 2px 10px rgb(0, 0, 0, 0.2);
@@ -444,10 +441,10 @@ body {
     margin-bottom: 10px;
 }
 .trigger-input  {
-    border-top: 1px solid var(--super-light-gray);
+    border-top: 1px solid #60656A;
 }
 .triggers ul li:first-child .trigger-input:first-child {
-    border-top: 2px solid var(--white);
+    border-top: 2px solid #eeeeee;
 }
 .settings-pop-up h2 {
     position: fixed;
@@ -458,7 +455,7 @@ body {
     margin: 0;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: var(--dark-gray);
+    background-color: #393e46;
     box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.3);
     border-radius: 25px 25px 0px 0px;
     text-align: center;
@@ -482,9 +479,9 @@ body {
     width: 50px;
     text-align: left;
 
-    font-size: 20px;
-    border: 1px solid var(--light-gray);
-    border-right: 0px solid var(--light-gray);
+    font-size: 21px;
+    border: 0px solid #FFFFFFFF;
+    background-color: rgba(0,0,0,0);
     outline: none;
     display: inline-block;
     padding-top: 0px;
@@ -500,15 +497,20 @@ input[type="text"].settings-unit {
     text-align: center;
 
     font-size: 12px;
-    color: var(--light-gray);
-    background-color: white;
+    border: 0px solid #FFFFFFFF;
+    outline: none;
     display: inline-block;
-    border-radius: 0px 5px 5px 0px;
-    padding-top: 9px;
-    padding-bottom: 2px;
-    padding-right: 4px;
-    border: 1px solid var(--light-gray);
-    border-left: 0px solid var(--light-gray);
+    margin: 0;
+    line-height: 1;
+}
+.settings-input {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(200, 200, 200);
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 6px;
 }
 .patient-name {
     margin-bottom: 30px;
@@ -516,7 +518,7 @@ input[type="text"].settings-unit {
 .patient-name input {
     font-size: 20px;
     border-radius: 10px;
-    border: 1px solid var(--light-gray);
+    border: 1px solid rgb(200, 200, 200);
     margin-right: 5px;
     width: 32.5%;
     padding-left: 10px;
