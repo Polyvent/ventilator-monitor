@@ -25,48 +25,101 @@
 }
 
 @keyframes easeInElastic {
-	0% {
-		transform: scale(0);
-	}
-
-	25% {
-		transform: scale(0);
-	}
-
-    50% {
-		transform: scale(1.2);
-	}
-
-    60% {
-		transform: scale(1);
-	}
-
-
-	100% {
-		transform: scale(1);
-	}
-}
-@keyframes easeOutElastic {
-    0% {
-		transform: scale(1);
-	}
-    40% {
-		transform: scale(1);
-	}
-
-	50% {
-		transform: scale(1.2);
-	}
-
-    75% {
-		transform: scale(0);
-	}
-
-    100% {
-		transform: scale(0);
-	}
+    from { transform: scale(0.9); }
+    to   { transform: scale(1); }
 }
 
+@-webkit-keyframes glowingBlue {
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
+}
+@-moz-keyframes glowingBlue {
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
+}
+@-o-keyframes glowingBlue {
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
+}
+@keyframes glowingBlue {
+    0% { background-color: #393e46; }
+    50% { background-color: #05e2ed;  }
+    100% { background-color: #393e46; }
+}
+
+@-webkit-keyframes glowingRedBG {
+    0% { background-color: #393e46; }
+    50% { background-color: var(--red); }
+    100% { background-color: #393e46; }
+}
+@-moz-keyframes glowingRedBG {
+    0% { background-color: #393e46; }
+    50% { background-color: var(--red); }
+    100% { background-color: #393e46; }
+}
+@-o-keyframes glowingRedBG {
+    0% { background-color: #393e46; }
+    50% { background-color: var(--red); }
+    100% { background-color: #393e46; }
+}
+@keyframes glowingRedBG {
+    0% { background-color: #393e46; }
+    50% { background-color: var(--red); }
+    100% { background-color: #393e46; }
+}
+
+@-webkit-keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+@-moz-keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+@-o-keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+@keyframes glowingRedFill {
+    0% { fill: white; }
+    50% { fill: var(--red); }
+    100% { fill: white; }
+}
+
+@-webkit-keyframes glowingRedColor {
+    0% { background-color: white; }
+    50% { background-color: var(--red); }
+    100% { background-color: white; }
+}
+@-moz-keyframes glowingRedColor {
+    0% { background-color: white; }
+    50% { background-color: var(--red); }
+    100% { background-color: white; }
+}
+@-o-keyframes glowingRedColor {
+    0% { color: white; }
+    50% { color: var(--red); }
+    100% { color: white; }
+}
+@keyframes glowingRedColor {
+    0% { color: white; }
+    50% { color: var(--red); }
+    100% { color: white; }
+}
+
+:root {
+    --dark-gray: #222831;
+    --gray: #393e46;
+    --light-gray: rgb(200, 200, 200);
+    --cyan: #05e2ed;
+    --red: #FF3F37;
+}
 
 body {
     background-color: #eeeeee;
@@ -88,46 +141,18 @@ body {
     box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
 }
 
-@-webkit-keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2); }
-}
-@-moz-keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2);}
-}
-@-o-keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2); }
-}
-@keyframes glowingBlue {
-    0% { background-color: rgba(5, 226, 237, 0.2); }
-    50% { background-color: rgba(5, 226, 237, 1);  }
-    100% { background-color: rgba(5, 226, 237, 0.2); }
+.ventilator-list-alarm {
+    -webkit-animation: glowingRedFill 1500ms infinite;
+    -moz-animation: glowingRedFill 1500ms infinite;
+    -o-animation: glowingRedFill 1500ms infinite;
+    animation: glowingRedFill 1500ms infinite;
 }
 
-@-webkit-keyframes glowingRed {
-    0% { background-color: #B20000; }
-    50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
-}
-@-moz-keyframes glowingRed {
-    0% { background-color: #B20000; }
-    50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
-}
-@-o-keyframes glowingRed {
-    0% { background-color: #B20000; }
-    50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
-}
-@keyframes glowingRed {
-    0% { background-color: #B20000; }
-    50% { background-color: #FF0000; }
-    100% { background-color: #B20000; }
+.side-info-alarm {
+    -webkit-animation: glowingRedColor 1500ms infinite;
+    -moz-animation: glowingRedColor 1500ms infinite;
+    -o-animation: glowingRedColor 1500ms infinite;
+    animation: glowingRedColor 1500ms infinite;
 }
 
 .profile-img {
@@ -135,7 +160,7 @@ body {
     height: 50px;
 }
 .svg-online {
-    fill: #4cd363;
+    fill: #05e2ed;
 }
 .svg-alarm {
     fill: #ff5722;
@@ -148,7 +173,7 @@ body {
 }
 
 .text-online {
-    color: #4cd363;
+    color: #05e2ed;
 }
 .text-alarm {
     color: #ff5722;
@@ -164,8 +189,6 @@ body {
     text-align: center;
     color: #afafaf;
 }
-
-
 
 .ventilator-status {
     width: 220px;
@@ -267,9 +290,6 @@ body {
     height: 50px;
     padding-top: 5px;
 }
-.ventilator-info-alarm {
-    background-color: #FF3F37;
-}
 .ventilator-category-li {
     background-color: #222831;
     margin: 0;
@@ -357,20 +377,19 @@ body {
 }
 
 .bottom-buttons .button-frozen {
-    /*background-color: #05e2ed;*/
     -webkit-animation: glowingBlue 1500ms infinite;
     -moz-animation: glowingBlue 1500ms infinite;
     -o-animation: glowingBlue 1500ms infinite;
     animation: glowingBlue 1500ms infinite;
 
-    color: black;
-}
-.bottom-buttons .button-frozen:hover, .bottom-buttons .button-frozen:active{
-    background-color: #02b8c2;
-    color: black;
 }
 
-
+.bottom-buttons .button-alarm-active {
+    -webkit-animation: glowingRedBG 1500ms infinite;
+    -moz-animation: glowingRedBG 1500ms infinite;
+    -o-animation: glowingRedBG 1500ms infinite;
+    animation: glowingRedBG 1500ms infinite;
+}
 
 .settings-background {
     position: fixed;
@@ -383,14 +402,15 @@ body {
 }
 
 .settings-pop-up {
-    animation: 0.8s ease-in 0s 1 easeInElastic;
+    animation: 0.1s ease-in 0s easeInElastic;
+
     position: fixed;
     top: 5%;
     right: calc(50% - 300px);
     height: 90%;
     width: 600px;
     background-color: #eeeeee;
-    border-radius: 25px;
+    border-radius: 29px 29px 25px 25px;
     z-index: 999;
     box-shadow: -5px 2px 10px rgb(0, 0, 0, 0.2);
     overflow-y: scroll;
@@ -398,7 +418,7 @@ body {
 .settings-content {
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 70px;
+    margin-top: 60px;
     overflow-y: scroll;
 }
 .triggers ul {
@@ -425,7 +445,6 @@ body {
 }
 .settings-pop-up h2 {
     position: fixed;
-    top: calc(5% - 1px);
     z-index: 99999;
     width: 600px;
     font-weight: lighter;

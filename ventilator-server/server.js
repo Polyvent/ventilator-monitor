@@ -31,21 +31,28 @@ function updateClientVentilators() {
     })
 }
 
+function setAlarm(emitterConnection, name) {
+    if (emitterConnection.alarms === undefined)
+        emitterConnection.alarms = {}
+
+    emitterConnection.alarms[name] = true
+}
+
 function processTriggers(data, callback) {
     var deviceID = data.ventdata.device_id
+    var emitterConnection = emitterConnections.find(c => c.deviceID == deviceID)
     db.getVentilator(deviceID, vent => {
-        // set alarms in emitter connection
-        var emitterConnection = emitterConnections.find(c => c.deviceID == deviceID)
+        // set alarms
         if (data.vitalsigns.heartRate < vent.heartRateMin || data.vitalsigns.heartRate > vent.heartRateMax)
-            emitterConnection.alarms.heartRate = true
+            setAlarm(emitterConnection, 'heartrate')
         if(data.vitalsigns.bloodpressure.systole < vent.systoleMin || data.vitalsigns.bloodpressure.systole > vent.systoleMax)
-            emitterConnection.alarms.systole = true
+            setAlarm(emitterConnection, 'systole')
         if(data.vitalsigns.bloodpressure.diastole < vent.diastoleMin || data.vitalsigns.bloodpressure.diastole > vent.diastoleMax)
-            emitterConnection.alarms.diastole = true
+            setAlarm(emitterConnection, 'diastole')
         if (data.vitalsigns.bodyTemperature < vent.bodyTemperatureMin || data.vitalsigns.bodyTemperature > vent.bodyTemperatureMax)
-            emitterConnection.alarms.bodyTemperature = true
+            setAlarm(emitterConnection, 'bodyTemperature')
         if (data.vitalsigns.oxygenSaturation < vent.oxygenSaturationMin || data.vitalsigns.oxygenSaturation > vent.oxygenSaturationMax)
-            emitterConnection.alarms.oxygenSaturation = true
+            setAlarm(emitterConnection, 'oxygenSaturation')
 
         data.alarms = emitterConnection.alarms
         callback(data)
@@ -140,7 +147,7 @@ nextApp.prepare()
 
         // clear alarms
         socket.on('clearalarms', deviceID => {
-            emitterConnections.find(c => c.deviceID === deviceID).alarms = {}
+            emitterConnections.find(c => c.deviceID === deviceID).alarms = undefined
         })
 
         // Send ventilators list to client

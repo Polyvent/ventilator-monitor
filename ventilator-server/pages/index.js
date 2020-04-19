@@ -26,7 +26,8 @@ class App extends React.Component {
             ventilators : [],
             activeVentilator: -1,
             frozen: false,
-            showSettings: false
+            showSettings: false,
+            alarms: []
         }
 
         this.updateActiveVentilator = this.updateActiveVentilator.bind(this);
@@ -35,6 +36,29 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        // Keep track of alarms for clear alarms button
+        socket.on('data', (data) => {
+            var alarmSet = this.state.alarms.includes(data.ventdata.device_id)
+
+            // Add alarm if necessary
+            if ((data.alarms !== undefined) && !alarmSet) {
+                console.log(`Alarm for device ${data.ventdata.device_id}`)
+                var newAlarms = this.state.alarms.concat(data.ventdata.device_id)
+                this.setState({
+                    alarms: newAlarms
+                })
+            }
+
+            // Remove alarm if necessary
+            if ((data.alarms === undefined) && alarmSet) {
+                console.log(`Clear alarm for device ${data.ventdata.device_id}`)
+                var newAlarms = this.state.alarms.filter(a => a !== data.ventdata.device_id)
+                this.setState({
+                    alarms: newAlarms
+                })
+            }
+        })
+
         socket.on('ventilators', (data) => {
             console.log("New ventilators: ", data)
             this.setState({
@@ -73,7 +97,7 @@ class App extends React.Component {
                 <div>
                     <VentilatorList ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} updateActiveVentilator={this.updateActiveVentilator} frozen={this.state.frozen}/>
                     <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} frozen={this.state.frozen}/>
-                    <BottomButtonList socket={socket} activeVentilator={this.state.activeVentilator} toggleFreeze={this.toggleFreeze} toggleSettings={this.toggleSettings} frozen={this.state.frozen}/>
+                    <BottomButtonList alarmActive={this.state.alarms.includes(this.state.activeVentilator)} socket={socket} activeVentilator={this.state.activeVentilator} toggleFreeze={this.toggleFreeze} toggleSettings={this.toggleSettings} frozen={this.state.frozen}/>
                     {showSettings}
                 </div>
             </div>
