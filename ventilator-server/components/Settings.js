@@ -105,7 +105,6 @@ export default class Settings extends React.Component {
                         <div className="patient-name">
                             <input type="text" id="fname" name="firstName" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange}/>
                             <input type="text" id="lname" name="lastName" placeholder="Last Name" value={this.state.lastName} onChange={this.handleChange}/>
-                            <input type="button" value="Update" onClick={this.handleUpdate}/>
                         </div>
 
                         <p className="settings-subtitle">Triggers</p>
@@ -114,50 +113,10 @@ export default class Settings extends React.Component {
                                 {vitals.map(v => (
                                     <TriggerInput name={v.title} unit={v.unit} vital={v.vital} min={this.state[v.vital + "Min"]} max={this.state[v.vital + "Max"]} onChange={this.handleTriggerChange}/>
                                 ))}
-                                {/* <li>
-                                    <TriggerInput name="SBP" unit="mmHg" onChange={this.handleTriggerChange}/>
-                                </li>
-                                <li>
-                                    <TriggerInput name="DBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
-                                </li>
-                                <li>
-                                    <TriggerInput name="END" unit="mmHg" />
-                                </li> */}
                             </ul>
+                        </div>
+                        <div>
+                            <input className="settings-buttons" type="button" value="Update" onClick={this.handleUpdate}/>
                         </div>
                     </div>
                 </div>
