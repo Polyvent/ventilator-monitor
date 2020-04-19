@@ -1,4 +1,6 @@
-![](https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/036/850/datas/gallery.jpg)
+<p align="center">
+  <img width="394" height="286" src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/036/850/datas/gallery.jpg">
+</p>
 
 ## Inspiration
 
