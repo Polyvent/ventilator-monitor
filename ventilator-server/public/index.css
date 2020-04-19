@@ -480,10 +480,16 @@ body {
     text-align: center;
     border-radius: 5px 0px 0px 5px;
 
-    font-size: 20px;
+    font-size: 12px;
     border: 1px solid rgb(200, 200, 200);
     border-right: 0px solid rgb(200, 200, 200);
     outline: none;
+    display: inline-block;
+    padding-top: 9px;
+    padding-bottom: 2px;
+    padding-left: 4px;
+    margin: 0;
+
 }
 .settings-unit {
     font-size: 12px;
@@ -491,8 +497,7 @@ body {
     background-color: white;
     display: inline-block;
     border-radius: 0px 5px 5px 0px;
-    border: 1px solid red;
-    padding-top: 9px;
+    padding-top: 10px;
     padding-bottom: 2px;
     padding-right: 4px;
     border: 1px solid rgb(200, 200, 200);
