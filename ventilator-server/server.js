@@ -48,7 +48,7 @@ function processTriggers(data, callback) {
 
         // set alarms
         if (data.vitalsigns.heartRate < vent.heartRateMin || data.vitalsigns.heartRate > vent.heartRateMax)
-            setAlarm(emitterConnection, 'heartrate')
+            setAlarm(emitterConnection, 'heartRate')
         if(data.vitalsigns.bloodpressure.systole < vent.systoleMin || data.vitalsigns.bloodpressure.systole > vent.systoleMax)
             setAlarm(emitterConnection, 'systole')
         if(data.vitalsigns.bloodpressure.diastole < vent.diastoleMin || data.vitalsigns.bloodpressure.diastole > vent.diastoleMax)
