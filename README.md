@@ -4,7 +4,7 @@
 
 # How to use
 
-# Starting the application server
+## Starting the application server
 
 ```bash
 $ cd ventilator-server
@@ -13,7 +13,7 @@ $ npm run dev
 
 By default, the server will start on port 8080 and the web interface will be available there.
 
-# Starting the data simulator
+## Starting the data simulator
 
 ```bash
  $ cd data-simulator
