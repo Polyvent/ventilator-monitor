@@ -3,6 +3,18 @@ import React from 'react';
 export default class TriggerInput extends React.Component {
     constructor(props) {
         super(props);
+
+        this.handleChange = this.handleChange.bind(this)
+    }
+    
+    state = {
+        min: 0,
+        max: 0
+    }
+
+    handleChange(event) {
+        //if ()
+        this.props.onChange(event, this.props.vital, event.target.value)
     }
 
     render() {

@@ -110,6 +110,18 @@ exports.ventilatorExists = (deviceID, callback) => {
     })
 }
 
+exports.updateVentilator = (deviceID, ventilator, callback) => {
+    db.serialize(() => {
+        var stmt = db.prepare(`UPDATE ventilators
+            SET firstName=?,lastName=?,systoleMin=?,systoleMax=?,diastoleMin=?,diastoleMax=?,bodyTemperatureMin=?,
+            bodyTemperatureMax=?,heartRateMin=?,heartRateMax=?,oxygenSaturationMin=?,oxygenSaturationMax=?
+            WHERE deviceID=?`, ventilator.firstName, ventilator.lastName, ventilator.limits.systoleMin, ventilator.limits.systoleMax,
+            ventilator.limits.diastoleMin, ventilator.limits.diastoleMax, ventilator.limits.bodyTemperatureMin, ventilator.limits.bodyTemperatureMax,
+            ventilator.limits.heartrateMin, ventilator.limits.heartRateMax, ventilator.limits.oxygenSaturationMin, ventilator.limits.oxygenSaturationMax,
+            ventilator.deviceID)
+    })
+}
+
 exports.updateLimit = (deviceID, vital, min, max, callback) => {
     var s1 = vital + "Min"
     var s2 = vital + "Max"

@@ -27,7 +27,19 @@ function updateClientVentilators() {
                 firstName: v.firstName,
                 lastName: v.lastName,
                 id: v.deviceID,
-                status: online ? (alarm ? "alarm" : "online") : "offline"
+                status: online ? (alarm ? "alarm" : "online") : "offline",
+                limits: {
+                    systoleMin: v.systoleMin,
+                    systoleMax: v.systoleMax,
+                    diastoleMin: v.diastoleMin,
+                    diastoleMax: v.diastoleMax,
+                    bodyTemperatureMin: v.bodyTemperatureMin,
+                    bodyTemperatureMax: v.bodyTemperatureMax,
+                    heartRateMin: v.heartRateMin,
+                    heartRateMax: v.heartRateMax,
+                    oxygenSaturationMin: v.oxygenSaturationMin,
+                    oxygenSaturationMax: v.oxygenSaturationMax
+                }
             }
         }))
     })
@@ -139,18 +151,21 @@ nextApp.prepare()
         socket.on('config', (config) => {
             console.log("Config event for device " + config.device_id)
             console.log(config)
-            if (config.ventilator !== undefined) {
-                config.ventilator.deviceID = config.device_id
-                db.addVentilator(config.ventilator, () => {
-                    updateClientVentilators()
-                })
-            }
+            // if (config.ventilator !== undefined) {
+            //     config.ventilator.deviceID = config.device_id
+            //     db.addVentilator(config.ventilator, () => {
+            //         updateClientVentilators()
+            //     })
+            // }
 
-            if (config.limits !== undefined) {
-                config.limits.forEach(l => {
-                    db.updateLimit(config.device_id, l.vital, l.min, l.max, () => {})
-                })
-            }
+            // if (config.limits !== undefined) {
+            //     config.limits.forEach(l => {
+            //         db.updateLimit(config.device_id, l.vital, l.min, l.max, () => {})
+            //     })
+            // }
+            db.updateVentilator(config.deviceID, config, () => {
+                updateClientVentilators();
+            })
         })
 
         // clear alarms
