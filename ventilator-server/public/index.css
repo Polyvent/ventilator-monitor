@@ -437,6 +437,9 @@ body {
     width: calc((100% / 2)- 65px);
 }
 
+.trigger-min, .trigger-max {
+    margin-bottom: 10px;
+}
 .trigger-input  {
     border-top: 1px solid #60656A;
 }
@@ -494,6 +497,7 @@ body {
     padding-right: 4px;
     border: 1px solid rgb(200, 200, 200);
     border-left: 0px solid rgb(200, 200, 200);
+    margin: 0;
 }
 .patient-name {
     margin-bottom: 30px;
