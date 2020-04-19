@@ -30,99 +30,102 @@
 }
 
 @-webkit-keyframes glowingBlue {
-    0% { background-color: #393e46; }
-    50% { background-color: #05e2ed;  }
-    100% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
+    50% { background-color: var(--cyan);  }
+    100% { background-color: var(--super-dark-gray); }
 }
 @-moz-keyframes glowingBlue {
-    0% { background-color: #393e46; }
-    50% { background-color: #05e2ed;  }
-    100% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
+    50% { background-color: var(--cyan);  }
+    100% { background-color: var(--super-dark-gray); }
 }
 @-o-keyframes glowingBlue {
-    0% { background-color: #393e46; }
-    50% { background-color: #05e2ed;  }
-    100% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
+    50% { background-color: var(--cyan);  }
+    100% { background-color: var(--super-dark-gray); }
 }
 @keyframes glowingBlue {
-    0% { background-color: #393e46; }
-    50% { background-color: #05e2ed;  }
-    100% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
+    50% { background-color: var(--cyan);  }
+    100% { background-color: var(--super-dark-gray); }
 }
 
 @-webkit-keyframes glowingRedBG {
-    0% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
     50% { background-color: var(--red); }
-    100% { background-color: #393e46; }
+    100% { background-color: var(--super-dark-gray); }
 }
 @-moz-keyframes glowingRedBG {
-    0% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
     50% { background-color: var(--red); }
-    100% { background-color: #393e46; }
+    100% { background-color: var(--super-dark-gray); }
 }
 @-o-keyframes glowingRedBG {
-    0% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
     50% { background-color: var(--red); }
-    100% { background-color: #393e46; }
+    100% { background-color: var(--super-dark-gray); }
 }
 @keyframes glowingRedBG {
-    0% { background-color: #393e46; }
+    0% { background-color: var(--super-dark-gray); }
     50% { background-color: var(--red); }
-    100% { background-color: #393e46; }
+    100% { background-color: var(--super-dark-gray); }
 }
 
 @-webkit-keyframes glowingRedFill {
-    0% { fill: white; }
+    0% { fill: var(--white); }
     50% { fill: var(--red); }
-    100% { fill: white; }
+    100% { fill: var(--white); }
 }
 @-moz-keyframes glowingRedFill {
-    0% { fill: white; }
+    0% { fill: var(--white); }
     50% { fill: var(--red); }
-    100% { fill: white; }
+    100% { fill: var(--white); }
 }
 @-o-keyframes glowingRedFill {
-    0% { fill: white; }
+    0% { fill: var(--white); }
     50% { fill: var(--red); }
-    100% { fill: white; }
+    100% { fill: var(--white); }
 }
 @keyframes glowingRedFill {
-    0% { fill: white; }
+    0% { fill: var(--white); }
     50% { fill: var(--red); }
-    100% { fill: white; }
+    100% { fill: var(--white); }
 }
 
 @-webkit-keyframes glowingRedColor {
-    0% { background-color: white; }
+    0% { background-color: var(--white); }
     50% { background-color: var(--red); }
-    100% { background-color: white; }
+    100% { background-color: var(--white); }
 }
 @-moz-keyframes glowingRedColor {
-    0% { background-color: white; }
+    0% { background-color: var(--white); }
     50% { background-color: var(--red); }
-    100% { background-color: white; }
+    100% { background-color: var(--white); }
 }
 @-o-keyframes glowingRedColor {
-    0% { color: white; }
+    0% { color: var(--white); }
     50% { color: var(--red); }
-    100% { color: white; }
+    100% { color: var(--white); }
 }
 @keyframes glowingRedColor {
-    0% { color: white; }
+    0% { color: var(--white); }
     50% { color: var(--red); }
-    100% { color: white; }
+    100% { color: var(--white); }
 }
 
 :root {
-    --dark-gray: #222831;
-    --gray: #393e46;
+    --super-dark-gray: #222831;
+    --dark-gray: #393e46;
+    --gray: #525863;
     --light-gray: rgb(200, 200, 200);
+    --super-light-gray: #60656A;
     --cyan: #05e2ed;
     --red: #FF3F37;
+    --white: #eeeeee;
 }
 
 body {
-    background-color: #eeeeee;
+    background-color: var(--white);
     color: black;
     font-family: "Roboto";
     margin: 0;
@@ -133,7 +136,7 @@ body {
 }
 .ventilator-list {
     height: 80px;
-    background-color: #393e46;
+    background-color: var(--dark-gray);
     color: white;
 
     -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
@@ -160,34 +163,34 @@ body {
     height: 50px;
 }
 .svg-online {
-    fill: #05e2ed;
+    fill: var(--cyan);
 }
 .svg-alarm {
-    fill: #ff5722;
+    fill: var(--red);
 }
 .svg-offline {
-    fill: #afafaf;
+    fill: var(--light-gray);
 }
 .svg-frozen {
-    fill: #05e2ed;
+    fill: var(--cyan);
 }
 
 .text-online {
-    color: #05e2ed;
+    color: var(--cyan);
 }
 .text-alarm {
-    color: #ff5722;
+    color: var(--red);
 }
 .text-offline {
-    color: #afafaf;
+    color: var(--light-gray);
 }
 .text-frozen {
-    color: #05e2ed;
+    color: var(--cyan);
 }
 
 .offline-right {
     text-align: center;
-    color: #afafaf;
+    color: var(--light-gray);
 }
 
 .ventilator-status {
@@ -198,10 +201,10 @@ body {
 .ventilator-status:hover, .ventilator-status:active {
     cursor: pointer;
     user-select: none;
-    background-color: #222831;
+    background-color: var(--super-dark-gray);
 }
 .active-vent {
-    background-color: #525863;
+    background-color: var(--gray);
 
     -webkit-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.75);
@@ -216,7 +219,7 @@ body {
 .ventilator-list li {
     display: inline-block;
     height: 80px;
-    border-right: 1px solid #60656A;
+    border-right: 1px solid var(--super-light-gray);
 }
 .ventilator-status svg {
     margin: 10px;
@@ -273,25 +276,25 @@ body {
 }
 .info-unit {
     font-size: 12px;
-    color: rgb(200, 200, 200);
+    color: var(--light-gray);
 }
 .info-value {
     float: right;
     font-size: 40px;
-    color: #05e2ed;
+    color: var(--cyan);
     margin: 0;
     padding-right: 10px;
 }
 .ventilator-info-li:first-child {
-    border-top: 1px solid #60656A;
+    border-top: 1px solid var(--dark-gray);
 }
 .ventilator-info {
-    border-bottom: 1px solid #60656A;
+    border-bottom: 1px solid var(--dark-gray);
     height: 50px;
     padding-top: 5px;
 }
 .ventilator-category-li {
-    background-color: #222831;
+    background-color: var(--super-dark-gray);
     margin: 0;
     padding: 0;
     text-align: center;
@@ -339,7 +342,7 @@ body {
 .bottom-buttons li {
     display: inline-block;
     color: white;
-    background-color: #393e46;
+    background-color: var(--dark-gray);
     padding: 10px;
     margin-right: 10px;
     vertical-align: bottom;
@@ -367,7 +370,7 @@ body {
 .bottom-buttons li:hover {
     transition: 0.3s;
     cursor: pointer;
-    background-color: #222831;
+    background-color: var(--super-dark-gray);
     box-shadow: -2px 2px 8px rgba(0,0,0,0.9);
 }
 
@@ -409,7 +412,7 @@ body {
     right: calc(50% - 300px);
     height: 90%;
     width: 600px;
-    background-color: #eeeeee;
+    background-color: var(--white);
     border-radius: 29px 29px 25px 25px;
     z-index: 999;
     box-shadow: -5px 2px 10px rgb(0, 0, 0, 0.2);
@@ -441,10 +444,10 @@ body {
     margin-bottom: 10px;
 }
 .trigger-input  {
-    border-top: 1px solid #60656A;
+    border-top: 1px solid var(--super-light-gray);
 }
 .triggers ul li:first-child .trigger-input:first-child {
-    border-top: 2px solid #eeeeee;
+    border-top: 2px solid var(--white);
 }
 .settings-pop-up h2 {
     position: fixed;
@@ -455,7 +458,7 @@ body {
     margin: 0;
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: #393e46;
+    background-color: var(--dark-gray);
     box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.3);
     border-radius: 25px 25px 0px 0px;
     text-align: center;
@@ -479,9 +482,9 @@ body {
     width: 50px;
     text-align: left;
 
-    font-size: 21px;
-    border: 0px solid #FFFFFFFF;
-    background-color: rgba(0,0,0,0);
+    font-size: 20px;
+    border: 1px solid var(--light-gray);
+    border-right: 0px solid var(--light-gray);
     outline: none;
     display: inline-block;
     padding-top: 0px;
@@ -497,6 +500,7 @@ input[type="text"].settings-unit {
     text-align: center;
 
     font-size: 12px;
+<<<<<<< Updated upstream
     border: 0px solid #FFFFFFFF;
     outline: none;
     display: inline-block;
@@ -511,6 +515,17 @@ input[type="text"].settings-unit {
     padding-right: 2px;
     padding-left: 2px;
     padding-top: 6px;
+=======
+    color: var(--light-gray);
+    background-color: white;
+    display: inline-block;
+    border-radius: 0px 5px 5px 0px;
+    padding-top: 9px;
+    padding-bottom: 2px;
+    padding-right: 4px;
+    border: 1px solid var(--light-gray);
+    border-left: 0px solid var(--light-gray);
+>>>>>>> Stashed changes
 }
 .patient-name {
     margin-bottom: 30px;
@@ -518,7 +533,7 @@ input[type="text"].settings-unit {
 .patient-name input {
     font-size: 20px;
     border-radius: 10px;
-    border: 1px solid rgb(200, 200, 200);
+    border: 1px solid var(--light-gray);
     margin-right: 5px;
     width: 32.5%;
     padding-left: 10px;
