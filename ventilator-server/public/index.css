@@ -103,14 +103,14 @@
     100% { background-color: var(--white); }
 }
 @-o-keyframes glowingRedColor {
-    0% { color: var(--white); }
-    50% { color: var(--red); }
-    100% { color: var(--white); }
+    0% { background-color: var(--white); }
+    50% { background-color: var(--red); }
+    100% { background-color: var(--white); }
 }
 @keyframes glowingRedColor {
-    0% { color: var(--white); }
-    50% { color: var(--red); }
-    100% { color: var(--white); }
+    0% { background-color: var(--white); }
+    50% { background-color: var(--red); }
+    100% { background-color: var(--white); }
 }
 
 :root {
@@ -238,7 +238,7 @@ body {
 
 
 .side-info {
-    background-color: #393e46;
+    background-color: var(--dark-gray);
     color: white;
     position: absolute;
     top: 80px;
@@ -286,10 +286,10 @@ body {
     padding-right: 10px;
 }
 .ventilator-info-li:first-child {
-    border-top: 1px solid var(--dark-gray);
+    border-top: 1px solid var(--super-light-gray);
 }
 .ventilator-info {
-    border-bottom: 1px solid var(--dark-gray);
+    border-bottom: 1px solid var(--super-light-gray);
     height: 50px;
     padding-top: 5px;
 }
@@ -393,6 +393,16 @@ body {
     -o-animation: glowingRedBG 1500ms infinite;
     animation: glowingRedBG 1500ms infinite;
 }
+.warning-svg {
+    position: relative;
+    bottom: 5px;
+}
+.snowflake-svg {
+    position: relative;
+    bottom: 4px;
+}
+
+
 
 .settings-background {
     position: fixed;
@@ -431,7 +441,7 @@ body {
 }
 .trigger-min {
     display: inline-block;
-    margin-left: 1s0px;
+    margin-left: 10px;
     width: calc((100% / 2)- 65px);
 }
 .trigger-max {
@@ -482,9 +492,9 @@ body {
     width: 50px;
     text-align: left;
 
-    font-size: 20px;
-    border: 1px solid var(--light-gray);
-    border-right: 0px solid var(--light-gray);
+    font-size: 21px;
+    border: 0px solid #FFFFFFFF;
+    background-color: rgba(0,0,0,0);
     outline: none;
     display: inline-block;
     padding-top: 0px;
@@ -498,17 +508,22 @@ body {
 input[type="text"].settings-unit {
     width: 37px;
     text-align: center;
-
-    font-size: 12px;
     color: var(--light-gray);
-    background-color: white;
+    font-size: 12px;
+    border: 0px solid #FFFFFFFF;
+    outline: none;
     display: inline-block;
-    border-radius: 0px 5px 5px 0px;
-    padding-top: 9px;
-    padding-bottom: 2px;
-    padding-right: 4px;
+    margin: 0;
+    line-height: 1;
+}
+.settings-input {
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
     border: 1px solid var(--light-gray);
-    border-left: 0px solid var(--light-gray);
+    padding-right: 2px;
+    padding-left: 2px;
+    padding-top: 6px;
 }
 .patient-name {
     margin-bottom: 30px;
@@ -525,24 +540,24 @@ input[type="text"].settings-unit {
     padding-bottom: 8px;
 }
 .patient-name input[type="button"] {
-    background-color: #525863;
+    background-color: var(--gray);
     color: white;
     font-size: 20px;
     border-radius: 10px;
-    border: 0px solid rgb(200, 200, 200);
+    border: 0px solid var(--light-gray);
     margin-right: 5px;
     width: 150px;
     padding-left: 5px;
 }
 .patient-name input[type="button"]:hover {
-    background-color: #393e46;
+    background-color: var(--dark-gray);
     cursor: pointer;
 }
 .set-button {
     font-size: 30px;
     height: 30px;
     width: 30px;
-    background: #525863;
+    background: var(--gray);
     color: white;
     display: inline-block;
     border: 0px solid black;
@@ -555,7 +570,7 @@ input[type="text"].settings-unit {
     user-select: none;
 }
 .set-button:hover {
-    background: #393e46;
+    background: var(--dark-gray);
 }
 .set-button span {
     position: relative;
@@ -568,10 +583,3 @@ input[type="text"].settings-unit {
     bottom:3px;
     font-weight: bold;
 }
-
-/*
-Blue:        05e2ed
-Blue Active: 02b8c2
-Gray dark:   393e46
-Gray less:   525863
- */

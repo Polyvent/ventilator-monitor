@@ -27,7 +27,7 @@ export default class TriggerInput extends React.Component {
                 <div className="trigger-max">
                     <label for={this.props.vital+"Max"}>Max </label>
                     <p className="set-button set-minus"> <span>-</span></p>
-                    <span class="settings-input"><input type="text" name={this.props.vital + "Max"} value={this.props.max} onChange={this.handleChange} placeholder="123" />
+                    <span className="settings-input"><input type="text" name={this.props.vital + "Max"} value={this.props.max} onChange={this.handleChange} placeholder="123" />
                     <input className="settings-unit" type="text" value={this.props.unit} disabled/></span>
                     <p className="set-button"> <span>+</span></p>
                 </div>
