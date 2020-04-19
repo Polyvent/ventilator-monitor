@@ -20,7 +20,7 @@ By default, the server will start on port 8080 and the web interface will be ava
  $ node main.js <ventilatorID (optional, default is 0)>
 ```
 
-The data simulator can be started with the ventilatorID (identifier from the infineon API; currently 0, 1, 2, 3 or 4) to forward data from a specific device to the application server. It connects to the application server automatically via socket.io.
+The data simulator can be started with the ventilatorID (identifier from the infineon API; currently 0, 1, 2, 3 or 4) to forward data from a specific device to the application server. It connects to the application server automatically via socket.io. The simulator enriches the infineon API data with simulated vital signs.
 
 Once a data simulator is started, the device is automatically registered with the server and is immediately displayed on all clients. Several instances of the data simulator can be started simultaneously (with different ventilatorIDs) to simulate multiple devices.
 
