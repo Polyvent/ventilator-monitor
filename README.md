@@ -13,6 +13,10 @@ _hackaTUM_ gives us a great opportunity to join other inspired students and try 
 
 ## What it does
 
+<p align="center">
+  <img width="1024" height="523" src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/036/863/datas/original.gif">
+</p>
+
 We developed a monitoring platform for ventilators (lung monitoring). A physician can use the platform on a tablet to observe the status of multiple patients at once. Additionally, the physician is alarmed when there are anomalies in the data (e.g. patients vital signs are critical). Without the need to check on the ventilators constantly, the physician can be occupied with other important tasks.
 
 The observed data includes measurements from the ventilator itself (flow rate, pressure, volume,...) and also vital data (blood pressure, heart rate, oxygen saturation).
