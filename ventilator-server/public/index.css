@@ -500,22 +500,6 @@ input[type="text"].settings-unit {
     text-align: center;
 
     font-size: 12px;
-<<<<<<< Updated upstream
-    border: 0px solid #FFFFFFFF;
-    outline: none;
-    display: inline-block;
-    margin: 0;
-    line-height: 1;
-}
-.settings-input {
-    background-color: white;
-    border-radius: 5px;
-    padding: 5px;
-    border: 1px solid rgb(200, 200, 200);
-    padding-right: 2px;
-    padding-left: 2px;
-    padding-top: 6px;
-=======
     color: var(--light-gray);
     background-color: white;
     display: inline-block;
@@ -525,7 +509,6 @@ input[type="text"].settings-unit {
     padding-right: 4px;
     border: 1px solid var(--light-gray);
     border-left: 0px solid var(--light-gray);
->>>>>>> Stashed changes
 }
 .patient-name {
     margin-bottom: 30px;
