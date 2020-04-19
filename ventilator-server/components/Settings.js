@@ -3,30 +3,64 @@ import React from 'react';
 import SettingsBackground from './SettingsBackground';
 import TriggerInput from './TriggerInput';
 
-export default class Settings extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.handleUpdate = this.handleUpdate.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-
-        console.log({dataa: this.props.ventilators})
+const vitals = [
+    {
+        title: "SBP",
+        vital: "systole",
+        unit: "mmHg"
+    },
+    {
+        title: "DBP",
+        vital: "diastole",
+        unit: "mmHg"
+    },
+    {
+        title: "Temp",
+        vital: "bodyTemperature",
+        unit: "°C"
+    },
+    {
+        title: "Pulse",
+        vital: "heartRate",
+        unit: "BPM"
+    },
+    {
+        title: "SaO2",
+        vital: "oxygenSaturation",
+        unit: "%"
     }
+]
 
+export default class Settings extends React.Component {
     state = {
         firstName: "",
         lastName: ""
     }
 
+    constructor(props) {
+        super(props);
+
+        this.handleUpdate = this.handleUpdate.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.handleTriggerChange = this.handleTriggerChange.bind(this)
+
+        console.log({dataa: this.props.ventilators})
+    }
+
     handleUpdate() {
-        this.props.socket.emit('config', {
-            device_id: this.props.activeVentilator,
-            ventilator: {
-                device_id: this.props.activeVentilator,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName
-            }
+        var data = {
+            deviceID: this.props.activeVentilator,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            limits: {}
+        }
+
+        vitals.forEach(v => {
+            data.limits[v.vital + "Min"] = Number(this.state[v.vital + "Min"])
+            data.limits[v.vital + "Max"] = Number(this.state[v.vital + "Max"])
         })
+
+        this.props.socket.emit('config', data)
     }
 
     handleChange(event) {
@@ -38,18 +72,27 @@ export default class Settings extends React.Component {
         })
     }
 
-    componentDidMount() {
-        var index = this.props.ventilators.findIndex(d => d.id === this.props.activeVentilator)
+    handleTriggerChange(event, limit, value) {
         this.setState({
-            firstName: this.props.ventilators[index].firstName,
-            lastName: this.props.ventilators[index].lastName
+            [limit]: value
         })
+    }
+
+    componentDidMount() {
+        var newState = {}
+        var index = this.props.ventilators.findIndex(d => d.id === this.props.activeVentilator)
+        newState.firstName = this.props.ventilators[index].firstName
+        newState.lastName = this.props.ventilators[index].lastName
+        vitals.forEach(v => {
+            newState[v.vital + "Min"] = this.props.ventilators[index].limits[v.vital + "Min"]
+            newState[v.vital + "Max"] = this.props.ventilators[index].limits[v.vital + "Max"]
+        })
+        this.setState(newState)
     }
 
 
     render() {
         var index = this.props.ventilators.findIndex(d => d.id === this.props.activeVentilator)
-
         return(
             <div>
                 <SettingsBackground toggleSettings={this.props.toggleSettings}/>
@@ -68,8 +111,11 @@ export default class Settings extends React.Component {
                         <p className="settings-subtitle">Triggers</p>
                         <div className="triggers">
                             <ul>
-                                <li>
-                                    <TriggerInput name="SBP" unit="mmHg" />
+                                {vitals.map(v => (
+                                    <TriggerInput name={v.title} unit={v.unit} vital={v.vital} min={this.state[v.vital + "Min"]} max={this.state[v.vital + "Max"]} onChange={this.handleTriggerChange}/>
+                                ))}
+                                {/* <li>
+                                    <TriggerInput name="SBP" unit="mmHg" onChange={this.handleTriggerChange}/>
                                 </li>
                                 <li>
                                     <TriggerInput name="DBP" unit="mmHg" />
@@ -110,7 +156,7 @@ export default class Settings extends React.Component {
                                 </li>
                                 <li>
                                     <TriggerInput name="END" unit="mmHg" />
-                                </li>
+                                </li> */}
                             </ul>
                         </div>
                     </div>
