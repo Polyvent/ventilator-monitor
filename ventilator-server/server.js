@@ -18,14 +18,16 @@ var emitterConnections = []
 function updateClientVentilators() {
     db.getVentilators(vents => {
         clients.emit('ventilators', vents.map(v => {
-            var online = emitterConnections.some(c => c.deviceID === v.deviceID)
+            var emitterConnection = emitterConnections.find(c => c.deviceID === v.deviceID)
+            var online = emitterConnection !== undefined
+            var alarm = online ? emitterConnection.alarms !== undefined : false
 
             return {
                 name: v.firstName + ' ' + v.lastName,
                 firstName: v.firstName,
                 lastName: v.lastName,
                 id: v.deviceID,
-                status: online ? "online" : "offline"
+                status: online ? (alarm ? "alarm" : "online") : "offline"
             }
         }))
     })
@@ -42,9 +44,11 @@ function processTriggers(data, callback) {
     var deviceID = data.ventdata.device_id
     var emitterConnection = emitterConnections.find(c => c.deviceID == deviceID)
     db.getVentilator(deviceID, vent => {
+        var alarmBefore = emitterConnection.alarms !== undefined
+
         // set alarms
         if (data.vitalsigns.heartRate < vent.heartRateMin || data.vitalsigns.heartRate > vent.heartRateMax)
-            setAlarm(emitterConnection, 'heartrate')
+            setAlarm(emitterConnection, 'heartRate')
         if(data.vitalsigns.bloodpressure.systole < vent.systoleMin || data.vitalsigns.bloodpressure.systole > vent.systoleMax)
             setAlarm(emitterConnection, 'systole')
         if(data.vitalsigns.bloodpressure.diastole < vent.diastoleMin || data.vitalsigns.bloodpressure.diastole > vent.diastoleMax)
@@ -55,6 +59,10 @@ function processTriggers(data, callback) {
             setAlarm(emitterConnection, 'oxygenSaturation')
 
         data.alarms = emitterConnection.alarms
+
+        // Update client ventilators in case alarm has changed (so status updates)
+        if (alarmBefore !== (emitterConnection.alarms !== undefined))
+            updateClientVentilators()
         callback(data)
     })
 }
@@ -97,7 +105,7 @@ nextApp.prepare()
                     socket.disconnect()
                     return
                 }
-                emitterConnections.push({socketID: socket.id, deviceID: data.ventdata.device_id, alarms: {}})
+                emitterConnections.push({socketID: socket.id, deviceID: data.ventdata.device_id})
                 console.log(`Emitter ${socket.id} registered as device ${data.ventdata.device_id}`)
                 updateClientVentilators()
             } else {
@@ -148,6 +156,7 @@ nextApp.prepare()
         // clear alarms
         socket.on('clearalarms', deviceID => {
             emitterConnections.find(c => c.deviceID === deviceID).alarms = undefined
+            updateClientVentilators()
         })
 
         // Send ventilators list to client
