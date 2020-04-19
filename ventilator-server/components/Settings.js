@@ -72,7 +72,7 @@ export default class Settings extends React.Component {
         })
     }
 
-    handleTriggerChange(event, limit, value) {
+    handleTriggerChange(limit, value) {
         this.setState({
             [limit]: value
         })
