@@ -93,24 +93,24 @@
 }
 
 @-webkit-keyframes glowingRedColor {
-    0% { background-color: var(--white); }
-    50% { background-color: var(--red); }
+    0% { color: var(--white); }
+    50% { color: var(--red); }
     100% { background-color: var(--white); }
 }
 @-moz-keyframes glowingRedColor {
-    0% { background-color: var(--white); }
-    50% { background-color: var(--red); }
-    100% { background-color: var(--white); }
+    0% { color: var(--white); }
+    50% { color: var(--red); }
+    100% { color: var(--white); }
 }
 @-o-keyframes glowingRedColor {
-    0% { background-color: var(--white); }
-    50% { background-color: var(--red); }
-    100% { background-color: var(--white); }
+    0% { color: var(--white); }
+    50% { color: var(--red); }
+    100% { color: var(--white); }
 }
 @keyframes glowingRedColor {
-    0% { background-color: var(--white); }
-    50% { background-color: var(--red); }
-    100% { background-color: var(--white); }
+    0% { color: var(--white); }
+    50% { color: var(--red); }
+    100% { color: var(--white); }
 }
 
 :root {

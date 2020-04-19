@@ -119,7 +119,7 @@ exports.updateVentilator = (ventilator, callback) => {
 
             stmt.run(ventilator.firstName, ventilator.lastName, ventilator.limits.systoleMin, ventilator.limits.systoleMax,
                 ventilator.limits.diastoleMin, ventilator.limits.diastoleMax, ventilator.limits.bodyTemperatureMin, ventilator.limits.bodyTemperatureMax,
-                ventilator.limits.heartrateMin, ventilator.limits.heartRateMax, ventilator.limits.oxygenSaturationMin, ventilator.limits.oxygenSaturationMax,
+                ventilator.limits.heartRateMin, ventilator.limits.heartRateMax, ventilator.limits.oxygenSaturationMin, ventilator.limits.oxygenSaturationMax,
                 ventilator.deviceID)
             stmt.finalize(err => {
                 callback()
