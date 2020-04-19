@@ -381,7 +381,7 @@ body {
     -moz-animation: glowingBlue 1500ms infinite;
     -o-animation: glowingBlue 1500ms infinite;
     animation: glowingBlue 1500ms infinite;
-    
+
 }
 
 .bottom-buttons .button-alarm-active {
@@ -405,20 +405,20 @@ body {
     animation: 0.1s ease-in 0s easeInElastic;
 
     position: fixed;
-    top: calc(50% - 400px);
+    top: 5%;
     right: calc(50% - 300px);
-    height: 800px;
+    height: 90%;
     width: 600px;
     background-color: #eeeeee;
-    border-radius: 25px;
+    border-radius: 29px 29px 25px 25px;
     z-index: 999;
     box-shadow: -5px 2px 10px rgb(0, 0, 0, 0.2);
-    overflow-y: hidden;
+    overflow-y: scroll;
 }
 .settings-content {
     margin-left: 20px;
     margin-right: 20px;
-    height: calc(100% + 200px);
+    margin-top: 60px;
     overflow-y: scroll;
 }
 .triggers ul {
@@ -427,18 +427,26 @@ body {
     padding: 0;
 }
 .trigger-min {
-    float: left;
+    display: inline-block;
+    margin-left: 1s0px;
+    width: calc((100% / 2)- 65px);
 }
 .trigger-max {
-    float: right;
+    display: inline-block;
+    margin-left: 50px;
+    width: calc((100% / 2)- 65px);
 }
 
-.trigger-input {
-    width: 100%;
-    height: 70px;
-    border-bottom: 1px solid #60656A;
+.trigger-input  {
+    border-top: 1px solid #60656A;
+}
+.triggers ul li:first-child .trigger-input:first-child {
+    border-top: 2px solid #eeeeee;
 }
 .settings-pop-up h2 {
+    position: fixed;
+    z-index: 99999;
+    width: 600px;
     font-weight: lighter;
     font-size: 40px;
     margin: 0;
@@ -446,7 +454,7 @@ body {
     padding-bottom: 5px;
     background-color: #393e46;
     box-shadow: 0px 5px 10px rgb(0, 0, 0, 0.3);
-
+    border-radius: 25px 25px 0px 0px;
     text-align: center;
     color: white;
 }
@@ -457,13 +465,16 @@ body {
 }
 
 .settings-subsubtitle {
+    display: inline-block;
     font-size: 20px;
     margin-bottom: 0px;
+    margin-right: 5px;
+    width: 60px;
+    font-weight: bold;
 }
 .trigger-input input[type="text"] {
     width: 50px;
     text-align: center;
-    height: 20px;
     border-radius: 5px 0px 0px 5px;
 
     font-size: 20px;
@@ -478,13 +489,11 @@ body {
     display: inline-block;
     border-radius: 0px 5px 5px 0px;
     border: 1px solid red;
-    padding-top: 6px;
+    padding-top: 9px;
     padding-bottom: 2px;
     padding-right: 4px;
     border: 1px solid rgb(200, 200, 200);
     border-left: 0px solid rgb(200, 200, 200);
-    /* position: relative; */
-    /* bottom: 1px; */
 }
 .patient-name {
     margin-bottom: 30px;

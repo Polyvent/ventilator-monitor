@@ -37,30 +37,30 @@ export default class VentilatorInfo extends React.Component {
                 unit = "mbar"
                 value = this.props.value.toFixed(0);
                 break;
-            case "sbp": 
+            case "sbp":
                 unit = "mmHg"
                 value = this.props.value.toFixed(0);
                 break;
-            case "dbp": 
+            case "dbp":
                 unit = "mmHg"
                 value = this.props.value.toFixed(0);
                 break;
-            case "temp": 
+            case "temp":
                 unit = "°C"
                 value = this.props.value.toFixed(1);
                 break;
-            case "pulse": 
+            case "pulse":
                 unit = "BPM"
                 value = this.props.value.toFixed(0);
                 break;
-            case "sao2": 
+            case "sao2":
                 unit = "%"
                 value = this.props.value.toFixed(0);
-                break; 
+                break;
             default:
                 unit = ""
                 value = this.props.value.toFixed(0);
-    
+
         }
 
         return(
