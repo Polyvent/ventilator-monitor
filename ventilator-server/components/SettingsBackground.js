@@ -11,5 +11,5 @@ export default class SettingsBackground extends React.Component {
             </div>
         );
     }
-
+    
 }

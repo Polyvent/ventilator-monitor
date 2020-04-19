@@ -48,13 +48,14 @@ export default class Settings extends React.Component {
 
 
     render() {
+        var index = this.props.ventilators.findIndex(d => d.id === this.props.activeVentilator)
 
         return(
             <div>
                 <SettingsBackground toggleSettings={this.props.toggleSettings}/>
 
                 <div className="settings-pop-up">
-                    <h2>Settings - Ventilator {this.props.activeVentilator}</h2>
+                    <h2>Settings - {this.props.ventilators[index].name}</h2>
 
                     <div className="settings-content">
                         <p className="settings-subtitle">Patient</p>
@@ -97,6 +98,18 @@ export default class Settings extends React.Component {
                                 </li>
                                 <li>
                                     <TriggerInput name="SBP" unit="mmHg" />
+                                </li>
+                                <li>
+                                    <TriggerInput name="SBP" unit="mmHg" />
+                                </li>
+                                <li>
+                                    <TriggerInput name="SBP" unit="mmHg" />
+                                </li>
+                                <li>
+                                    <TriggerInput name="SBP" unit="mmHg" />
+                                </li>
+                                <li>
+                                    <TriggerInput name="END" unit="mmHg" />
                                 </li>
                             </ul>
                         </div>

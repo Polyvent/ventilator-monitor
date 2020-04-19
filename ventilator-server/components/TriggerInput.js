@@ -9,7 +9,6 @@ export default class TriggerInput extends React.Component {
 
         return(
             <div className="trigger-input">
-                <div className="separator"></div>
                 <p className="settings-subsubtitle">{this.props.name}</p>
                 <div className="trigger-min">
                     <label for={"min"+this.props.name}>Min </label>
