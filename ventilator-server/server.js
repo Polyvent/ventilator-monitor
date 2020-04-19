@@ -159,8 +159,12 @@ nextApp.prepare()
 
         // clear alarms
         socket.on('clearalarms', deviceID => {
-            emitterConnections.find(c => c.deviceID === deviceID).alarms = undefined
-            updateClientVentilators()
+            var conn = emitterConnections.find(c => c.deviceID === deviceID)
+            // Don't clear alarms for offline ventilators
+            if (conn !== undefined) {
+                conn.alarms = undefined
+                updateClientVentilators()
+            }
         })
 
         // Send ventilators list to client
