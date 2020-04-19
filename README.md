@@ -2,6 +2,32 @@
   <img width="197" height="143" src="https://challengepost-s3-challengepost.netdna-ssl.com/photos/production/software_photos/001/036/850/datas/gallery.jpg">
 </p>
 
+# How to use
+
+# Starting the application server
+
+```bash
+$ cd ventilator-server
+$ npm run dev
+```
+
+By default, the server will start on port 8080 and the web interface will be available there.
+
+# Starting the data simulator
+
+```bash
+ $ cd data-simulator
+ $ node main.js <ventilatorID (optional, default is 0)>
+```
+
+The data simulator can be started with the ventilatorID (identifier from the infineon API; currently 0, 1, 2, 3 or 4) to forward data from a specific device to the application server. It connects to the application server automatically via socket.io.
+
+Once a data simulator is started, the device is automatically registered with the server and is immediately displayed on all clients. Several instances of the data simulator can be started simultaneously (with different ventilatorIDs) to simulate multiple devices.
+
+During operation, the `data-simulator/config/default.json` config file is copied to `data-simulator/config/<ventilatorID>.json`. Editing the `vitals.steadyValues` values file (yes, while the simulator is running) allows changing the simulated vital signs during operation. The values will be adjusted gradually once the file is saved.
+
+# Project information
+
 ## Inspiration
 
 We started working on a vaccine but quickly hit a wall (cannot program vaccines). After scrapping that idea, we registered at _hackaTUM_.
