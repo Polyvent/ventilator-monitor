@@ -72,7 +72,16 @@ function dataEmit() {
     .then(response => response.json())
     .then(ventdata => {
         console.log(ventdata[ventNum].time)
-        data.ventdata = ventdata[ventNum]
+        data.ventdata = ventdata[ventNum];
+        data.ventdata.processed.triggerSettings.FiO2 = 20;
+        data.ventdata.processed.triggerSettings.IE = 20;
+        data.ventdata.processed.triggerSettings.MVe = 50000;
+        data.ventdata.processed.triggerSettings.PEEP = 6.1;
+        data.ventdata.processed.triggerSettings.RR = 15;
+        data.ventdata.processed.triggerSettings.VT = 400;
+        data.ventdata.processed.triggerSettings.humidity = 70;
+        data.ventdata.processed.triggerSettings.pressure_max = 50;
+        console.log(data.ventdata.processed.triggerSettings)
         ioClient.emit('data', data);
     })
     .catch(err => console.error(err))    
