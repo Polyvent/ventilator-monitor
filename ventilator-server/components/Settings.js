@@ -47,6 +47,11 @@ export default class Settings extends React.Component {
         console.log({dataa: this.props.ventilators})
     }
 
+    handleUpdateButton(e) {
+        e.handleUpdate()
+        e.props.toggleSettings()
+    }
+
     handleUpdate() {
         var data = {
             deviceID: this.props.activeVentilator,
@@ -116,7 +121,7 @@ export default class Settings extends React.Component {
                             </ul>
                         </div>
                         <div>
-                            <input className="settings-buttons" type="button" value="Update" onClick={this.handleUpdate}/>
+                            <input className="settings-buttons" type="button" value="Update" onClick={() => this.handleUpdateButton(this)}/>
                         </div>
                     </div>
                 </div>

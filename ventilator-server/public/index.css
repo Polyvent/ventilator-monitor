@@ -582,8 +582,26 @@ input[type="text"].settings-unit {
     /* padding-left: 5px; */
     padding: 10px;
     margin-bottom: 20px;
+    outline: none;
 }
 .settings-buttons:hover {
     background-color: var(--dark-gray);
     cursor: pointer;
+}
+.project-name {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 80px;
+    text-align: center;
+    background: rgb(157,255,194);
+    background: linear-gradient(119deg, rgba(157,255,194,1) 0%, rgba(99,209,246,1) 100%);
+
+}
+.project-name h1 {
+    font-weight: normal;
+    font-size: 40px;
+    position: relative;
+    bottom: 10px;
 }

@@ -99,6 +99,9 @@ class App extends React.Component {
                     <VentilatorView ventilators = {this.state.ventilators} activeVentilator={this.state.activeVentilator} ventilatorData = {this.ventilatorData} socket = {socket} frozen={this.state.frozen}/>
                     <BottomButtonList alarmActive={this.state.alarms.includes(this.state.activeVentilator)} socket={socket} activeVentilator={this.state.activeVentilator} toggleFreeze={this.toggleFreeze} toggleSettings={this.toggleSettings} frozen={this.state.frozen}/>
                     {showSettings}
+                    <div className="project-name">
+                        <h1>Polyvent</h1>
+                    </div>
                 </div>
             </div>
         );
