@@ -390,6 +390,16 @@ body {
     -o-animation: glowingRedBG 1500ms infinite;
     animation: glowingRedBG 1500ms infinite;
 }
+.warning-svg {
+    position: relative;
+    bottom: 5px;
+}
+.snowflake-svg {
+    position: relative;
+    bottom: 4px;
+}
+
+
 
 .settings-background {
     position: fixed;
